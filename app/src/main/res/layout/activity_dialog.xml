@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:columnCount="3"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.dojoy.myapplication.dialog.DialogActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="FadeInDialog"
+        android:id="@+id/fadeIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="FallDialog"
+        android:id="@+id/Fall"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="FlipHDialog"
+        android:id="@+id/FlipH"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="FlipVDialog"
+        android:id="@+id/FlipV"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="NewsPaper"
+        android:id="@+id/NewsPaper"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="RotateBottom"
+        android:id="@+id/RotateBottom"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="RotateLeft"
+        android:id="@+id/RotateLeft"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="Shake"
+        android:id="@+id/Shake"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SideFall"
+        android:id="@+id/SideFall"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SlideBottom"
+        android:id="@+id/SlideBottom"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SlideLeft"
+        android:id="@+id/SlideLeft"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SlideRight"
+        android:id="@+id/SlideRight"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SlideTop"
+        android:id="@+id/SlideTop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/_ffff00"
+        android:padding="15dp"
+        android:text="SlitDialog"
+        android:id="@+id/SlitDialog"/>
+</GridLayout>

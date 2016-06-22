@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/mImage"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/test"/>
+
+    <com.example.dojoy.myapplication.scroll.CustomScrollView
+        android:id="@+id/mCustomScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="1000dp"
+                android:gravity="center"
+                android:text="滑动内容滑动内容滑动内容滑动内容滑动内容滑
+                动内容滑动内容滑动内容滑动内容滑动内容滑动内容"
+                android:textSize="100sp"/>
+
+        </LinearLayout>
+
+    </com.example.dojoy.myapplication.scroll.CustomScrollView>
+</LinearLayout>

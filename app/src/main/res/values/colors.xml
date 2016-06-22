@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="_ffff00">#ffff00</color>
+    <color name="_afafaf">#afafaf</color>
+    <color name="_ffffff">#ffffff</color>
+    <color name="_0000ff">#0000ff</color>
+    <color name="_ff0000">#ff0000</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="divider_color">#11000000</color>
+    <color name="msg_color">#FFFFFFFF</color>
+    <color name="dialog_bg">#ffe74c3c</color>
+
+    <color name="btn_press_color">#66000000</color>
+    <color name="btn_unpress_color">#22000000</color>
+    <color name="_000000">#000000</color>
+</resources>

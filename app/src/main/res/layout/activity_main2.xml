@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".cardView.CardViewItemActivity">
+
+    <!--<com.example.dojoy.myapplication.views.MyToolBar-->
+    <!--android:id="@+id/topBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+
+    <!--</com.example.dojoy.myapplication.views.MyToolBar>-->
+
+    <!--<com.example.dojoy.myapplication.views.MyScrollView-->
+    <!--android:id="@+id/scroll"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<TextView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="2000dp"-->
+    <!--android:text="测试滑动测试滑动测试滑动测试滑动测试滑动"-->
+    <!--android:textSize="100sp"-->
+    <!--/>-->
+    <!--</LinearLayout>-->
+
+
+    <!--</com.example.dojoy.myapplication.views.MyScrollView>-->
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/cardViewRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/careViewRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

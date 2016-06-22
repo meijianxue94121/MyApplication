@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  导航栏头部属性 -->
+    <declare-styleable name="MyToolBar">
+        <attr name="leftBtnIcon" format="reference"/>
+        <attr name="rightBtnIcon" format="reference"/>
+        <attr name="leftText" format="string"/>
+        <attr name="rightText" format="string"/>
+        <attr name="titleText" format="string"/>
+
+    </declare-styleable>
+
+</resources>

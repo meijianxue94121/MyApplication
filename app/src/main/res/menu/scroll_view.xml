@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+    <item
+        android:id="@+id/action_normal"
+        android:orderInCategory="100"
+        android:title="normal"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_parallax"
+        android:orderInCategory="101"
+        android:title="parallax"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_hide_head"
+        android:orderInCategory="102"
+        android:title="hide_head"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_show_head"
+        android:orderInCategory="103"
+        android:title="show_head"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_disable_zoom"
+        android:orderInCategory="104"
+        android:title="disable_zoom"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_enable_zoom"
+        android:orderInCategory="105"
+        android:title="enable_zoom"
+        app:showAsAction="never"/>
+</menu>

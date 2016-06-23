@@ -8,6 +8,8 @@ import android.view.View;
 import com.example.dojoy.myapplication.baidu.BaiduActivity;
 import com.example.dojoy.myapplication.cardView.CardViewItemActivity;
 import com.example.dojoy.myapplication.dialog.DialogActivity;
+import com.example.dojoy.myapplication.gallery.ActivityCoverFlow;
+import com.example.dojoy.myapplication.photos.PhotoViewActivity;
 import com.example.dojoy.myapplication.scroll.PullScrollViewZoomView;
 import com.example.dojoy.myapplication.scroll.PullZoomListViewActivity;
 import com.example.dojoy.myapplication.scroll.recyclerview.PullToZoomRecyclerActivity;
@@ -20,31 +22,44 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> ad;
 
-    @OnClick({R.id.mCardView, R.id.mDialog, R.id.mBaidu, R.id.mHeadScroll,R.id.mHeadListView,R.id.mHeadRecycler})
+    @OnClick({R.id.mCardView, R.id.mCoverFlow, R.id.mDialog, R.id.mBaidu, R.id.mHeadScroll, R.id.mHeadListView, R.id.mHeadRecycler, R.id.mPhotoView, R.id.mViewPager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mCardView:
+                //CardView。4.4以上会比较漂亮
                 startActivity(new Intent(this, CardViewItemActivity.class));
                 break;
             case R.id.mDialog:
-
+                //Dialog相关
                 startActivity(new Intent(this, DialogActivity.class));
                 break;
             case R.id.mBaidu:
-
+                //百度地图
                 startActivity(new Intent(this, BaiduActivity.class));
                 break;
             case R.id.mHeadScroll:
-
+                //头部下拉控件ScrollView
                 startActivity(new Intent(this, PullScrollViewZoomView.class));
                 break;
             case R.id.mHeadListView:
-
+                //头部下拉控件ListView
                 startActivity(new Intent(this, PullZoomListViewActivity.class));
                 break;
             case R.id.mHeadRecycler:
-
+                //头部下拉控件Recycler
                 startActivity(new Intent(this, PullToZoomRecyclerActivity.class));
+                break;
+            case R.id.mPhotoView:
+                //PhotoView图片展示控件
+                startActivity(new Intent(this, PhotoViewActivity.class));
+                break;
+            case R.id.mViewPager:
+                //PhotoView图片展示控件
+                startActivity(new Intent(this, com.example.dojoy.myapplication.viewpager.MainActivity.class));
+                break;
+            case R.id.mCoverFlow:
+                //PhotoView图片展示控件
+                startActivity(new Intent(this, ActivityCoverFlow.class));
                 break;
         }
     }

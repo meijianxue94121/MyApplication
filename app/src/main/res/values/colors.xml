@@ -16,4 +16,5 @@
     <color name="btn_press_color">#66000000</color>
     <color name="btn_unpress_color">#22000000</color>
     <color name="_000000">#000000</color>
+    <color name="_f4f4f4">#f4f4f4</color>
 </resources>

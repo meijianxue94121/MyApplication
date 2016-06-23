@@ -1,69 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3"
-    android:padding="10dp"
     tools:context="com.example.dojoy.myapplication.MainActivity">
 
-    <TextView
-        android:id="@+id/mCardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:text="CardView"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/mDialog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:text="Dialog测试"/>
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="3"
+            android:padding="10dp">
 
-    <TextView
-        android:id="@+id/mBaidu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:text="百度导航"/>
+            <TextView
+                android:id="@+id/mCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="CardView"/>
 
-    <TextView
-        android:id="@+id/mHeadScroll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:text="Scroll头部滑动"/>
-    <TextView
-        android:id="@+id/mHeadListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="ListView头部滑动"/>
-    <TextView
-        android:id="@+id/mHeadRecycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/_ffff00"
-        android:clickable="true"
-        android:padding="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Recycler头部滑动"/>
-</GridLayout>
+            <TextView
+                android:id="@+id/mDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="Dialog测试"/>
+
+            <TextView
+                android:id="@+id/mBaidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="百度导航"/>
+
+            <TextView
+                android:id="@+id/mHeadScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="Scroll(头)"/>
+
+            <TextView
+                android:id="@+id/mHeadListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="ListView(头)"/>
+
+            <TextView
+                android:id="@+id/mHeadRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="Recycler(头)"/>
+
+            <TextView
+                android:id="@+id/mPhotoView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="PhotoView"/>
+
+            <TextView
+                android:id="@+id/mViewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="ViewPager"/>
+
+            <TextView
+                android:id="@+id/mCoverFlow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:padding="10dp"
+                android:text="QQ身边的人"/>
+
+        </GridLayout>
+
+    </ScrollView>
+
+</LinearLayout>

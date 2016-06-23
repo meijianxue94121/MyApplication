@@ -6,6 +6,10 @@
     <!-- <uses-sdk -->
     <!-- xmlns:tools="http://schemas.android.com/tools" -->
     <!-- tools:node="replace"/> -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,6 +37,16 @@
         <activity android:name=".scroll.PullZoomListViewActivity">
         </activity>
         <activity android:name=".scroll.recyclerview.PullToZoomRecyclerActivity">
+        </activity>
+        <activity android:name=".photos.PhotoViewActivity">
+        </activity>
+        <activity android:name=".photos.PhotoPreviewActivity">
+        </activity>
+        <activity android:name=".viewpager.MainActivity">
+        </activity>
+        <activity android:name=".gallery.ActivityoverFlow">
+        </activity>
+        <activity android:name=".gallery.ActivityCoverFlow">
         </activity>
     </application>
 

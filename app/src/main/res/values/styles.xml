@@ -27,7 +27,13 @@
     <style name="dialog_untran" parent="dialog_tran">
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+    <style name="AppTheme.NoActionBar">
 
+    <item name="windowActionBar">false</item>
+
+    <item name="windowNoTitle">true</item>
+
+</style>
     <style name="dialog_btn">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

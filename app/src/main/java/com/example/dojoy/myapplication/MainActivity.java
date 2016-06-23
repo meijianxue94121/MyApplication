@@ -22,7 +22,8 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> ad;
 
-    @OnClick({R.id.mCardView, R.id.mCoverFlow, R.id.mDialog, R.id.mBaidu, R.id.mHeadScroll, R.id.mHeadListView, R.id.mHeadRecycler, R.id.mPhotoView, R.id.mViewPager})
+    @OnClick({R.id.mCardView,R.id.mStickyHeader, R.id.mCoverFlow, R.id.mDialog, R.id.mBaidu,
+            R.id.mHeadScroll, R.id.mHeadListView, R.id.mHeadRecycler, R.id.mPhotoView, R.id.mViewPager})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mCardView:
@@ -58,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, com.example.dojoy.myapplication.viewpager.MainActivity.class));
                 break;
             case R.id.mCoverFlow:
-                //PhotoView图片展示控件
+                //CoverFlow图片展示控件
                 startActivity(new Intent(this, ActivityCoverFlow.class));
+                break;
+            case R.id.mStickyHeader:
+                //头部的Recycler版本
+                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
                 break;
         }
     }

@@ -15,6 +15,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".stickHeader.StickyHeadersDemoApp"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
         <activity android:name=".MainActivity">
@@ -44,10 +45,72 @@
         </activity>
         <activity android:name=".viewpager.MainActivity">
         </activity>
-        <activity android:name=".gallery.ActivityoverFlow">
-        </activity>
         <activity android:name=".gallery.ActivityCoverFlow">
         </activity>
+        <activity
+            android:name=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".stickHeader.ui.AddressBookDemoActivity"
+            android:label="@string/title_address_book_demo"
+            android:launchMode="singleTop"
+            android:parentActivityName=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".stickHeader.ui.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".stickHeader.ui.HeaderCallbacksDemoActivity"
+            android:label="@string/title_simple_demo"
+            android:launchMode="singleTop"
+            android:parentActivityName=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".stickHeader.ui.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".stickHeader.ui.StressTestDemoActivity"
+            android:label="@string/title_stress_test_demo"
+            android:launchMode="singleTop"
+            android:parentActivityName=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".stickHeader.ui.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".stickHeader.ui.CollapsingSectionsDemoActivity"
+            android:label="@string/title_collapsing_headers_demo"
+            android:launchMode="singleTop"
+            android:parentActivityName=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".stickHeader.ui.MainActivity"/>
+        </activity>
+
+        <activity
+            android:name=".stickHeader.ui.SectioningAdapterDemoActivity"
+            android:label="@string/title_sectioning_adapter_demo"
+            android:launchMode="singleTop"
+            android:parentActivityName=".stickHeader.ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".stickHeader.ui.MainActivity"/>
+        </activity>
+
     </application>
 
 </manifest>

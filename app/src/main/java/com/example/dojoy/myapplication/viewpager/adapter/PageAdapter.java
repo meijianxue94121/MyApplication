@@ -28,8 +28,8 @@ public class PageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return Integer.MAX_VALUE;
-//        return subjectsInfos.size();
+//        return Integer.MAX_VALUE;
+        return subjectsInfos.size();
     }
 
 
@@ -38,7 +38,7 @@ public class PageAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.item_view, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv_movie);
         TextView title = (TextView) view.findViewById(R.id.tv_title);
-        position =position%subjectsInfos.size();
+//        position =position%subjectsInfos.size();
         SubjectsInfo subjectsInfo = subjectsInfos.get(position);
         title.setText(subjectsInfo.getTitle());
         PhotoLoader.display(container.getContext(), imageView, subjectsInfo.getImages().getLarge(), context.getResources().getDrawable(R.mipmap.ic_loading));
@@ -53,8 +53,8 @@ public class PageAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-//        View view = (View) object;
-//        container.removeView(view);
+        View view = (View) object;
+        container.removeView(view);
     }
 
 }

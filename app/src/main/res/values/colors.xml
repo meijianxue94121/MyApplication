@@ -17,4 +17,20 @@
     <color name="btn_unpress_color">#22000000</color>
     <color name="_000000">#000000</color>
     <color name="_f4f4f4">#f4f4f4</color>
+
+    <color name="actionButton">#bbbbbb</color>
+
+    <color name="windowBackground">#fafafa</color>
+
+    <color name="textLight">#dddddd</color>
+
+    <color name="textMedium">#999999</color>
+
+    <color name="divider">#dddddd</color>
+
+    <color name="tabTextDefault">#afff</color>
+
+    <color name="tabTextSelected">#fff</color>
+
+    <color name="headerBackground">#eeeeee</color>
 </resources>

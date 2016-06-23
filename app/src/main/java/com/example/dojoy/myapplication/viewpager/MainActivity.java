@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_mainviewpager);
         init();
         LoadData();
     }
@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 list.addAll(response.body().getList());
                 viewPager.setAdapter(adapter);
 
-                final int num = Integer.MAX_VALUE / 2 % list.size();
-                int selectPosition = Integer.MAX_VALUE / 2 - num/2;
-                viewPager.setCurrentItem(selectPosition);
 
                 loaddingDialog.cancel();
             }

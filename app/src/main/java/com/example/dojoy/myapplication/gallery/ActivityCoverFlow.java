@@ -7,12 +7,12 @@ import com.example.dojoy.myapplication.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class ActivityCoverFlow extends AppCompatActivity {
 
-    @InjectView(R.id.coverFlow)
+    @BindView(R.id.coverFlow)
     FancyCoverFlow homeCoverFlow;
     HomeCoverAdapter adapter;
     private ArrayList<HomeItem> mFancyCoverFlows;
@@ -22,7 +22,7 @@ public class ActivityCoverFlow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_cover_flow);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         init();
 
 

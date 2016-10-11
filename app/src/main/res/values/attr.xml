@@ -19,4 +19,9 @@
             <enum name="auto" value="2147483647"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="RoundAngleImageView">
+        <attr name="roundWidth" format="dimension"/>
+        <attr name="roundHeight" format="dimension"/>
+    </declare-styleable>
 </resources>

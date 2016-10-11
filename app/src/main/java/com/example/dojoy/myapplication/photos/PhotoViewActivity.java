@@ -9,8 +9,8 @@ import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 import com.example.dojoy.myapplication.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import cn.hadcn.davinci.DaVinci;
 
@@ -19,15 +19,15 @@ import cn.hadcn.davinci.DaVinci;
  */
 public class PhotoViewActivity extends AppCompatActivity {
 
-    @InjectView(R.id.mPhotoView)
+    @BindView(R.id.mPhotoView)
     PhotoView mPhotoView;
-    @InjectView(R.id.mPhotoView2)
+    @BindView(R.id.mPhotoView2)
     PhotoView mPhotoView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_view);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         mPhotoView.enable();
         mPhotoView.setAnimaDuring(500);
         // 获取/设置 最大缩放倍数

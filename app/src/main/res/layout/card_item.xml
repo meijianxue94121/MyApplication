@@ -10,6 +10,7 @@
     android:minHeight="30dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
+    app:cardPreventCornerOverlap="false"
     >
 
     <LinearLayout
@@ -17,11 +18,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.example.dojoy.myapplication.cardView.RoundAngleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/test"/>
+            android:src="@mipmap/test"
+            app:roundHeight="10dp"
+            app:roundWidth="10dp"
+            />
 
         <TextView
             android:id="@+id/itemText"

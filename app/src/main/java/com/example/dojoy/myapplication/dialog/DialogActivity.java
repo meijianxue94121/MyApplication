@@ -18,7 +18,7 @@ public class DialogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         dialogBuilder = NiftyDialogBuilder.getInstance(this);
     }
 

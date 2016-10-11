@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="4"
         android:gravity="center"
-        android:textColor="@color/_ff0000"
+        android:textColor="#f95e00"
         android:textSize="17sp"
         android:visibility="gone"/>
 

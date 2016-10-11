@@ -14,18 +14,28 @@ import android.widget.TextView;
 
 import com.example.dojoy.myapplication.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Administrator on 2015/12/25.
  */
 public class MyToolBar extends LinearLayout {
-    private LayoutInflater mInflater;
-    LinearLayout leftLayout, rightLayout;
-    TextView titleView;
-    // EditText editText;
+    @BindView(R.id.toolbar_leftButton)
     ImageView leftImageBtn;
-    ImageView rightImageBtn;
+    @BindView(R.id.toolbar_leftTextButton)
     TextView leftTextBtn;
+    @BindView(R.id.toolbar_leftLayout)
+    LinearLayout leftLayout;
+    @BindView(R.id.toolbar_title)
+    TextView titleView;
+    @BindView(R.id.toolbar_rightTextButton)
     TextView rightTextBtn;
+    @BindView(R.id.toolbar_rightButton)
+    ImageView rightImageBtn;
+    @BindView(R.id.toolbar_rightLayout)
+    LinearLayout rightLayout;
+    private LayoutInflater mInflater;
     public View mView;
 
     public MyToolBar(Context context) {
@@ -181,19 +191,22 @@ public class MyToolBar extends LinearLayout {
         if (mView == null) {
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.liu_toolbarlayout, this);
-            titleView = (TextView) mView.findViewById(R.id.toolbar_title);
-            rightImageBtn = (ImageView) mView
-                    .findViewById(R.id.toolbar_rightButton);
-            leftImageBtn = (ImageView) mView
-                    .findViewById(R.id.toolbar_leftButton);
-            leftTextBtn = (TextView) mView
-                    .findViewById(R.id.toolbar_leftTextButton);
-            rightTextBtn = (TextView) mView
-                    .findViewById(R.id.toolbar_rightTextButton);
-            leftLayout = (LinearLayout) mView
-                    .findViewById(R.id.toolbar_leftLayout);
-            rightLayout = (LinearLayout) mView
-                    .findViewById(R.id.toolbar_rightLayout);
+
+            ButterKnife.bind(mView);
+
+            //            titleView = (TextView) mView.findViewById(R.id.toolbar_title);
+            //            rightImageBtn = (ImageView) mView
+            //                    .findViewById(R.id.toolbar_rightButton);
+            //            leftImageBtn = (ImageView) mView
+            //                    .findViewById(R.id.toolbar_leftButton);
+            //            leftTextBtn = (TextView) mView
+            //                    .findViewById(R.id.toolbar_leftTextButton);
+            //            rightTextBtn = (TextView) mView
+            //                    .findViewById(R.id.toolbar_rightTextButton);
+            //            leftLayout = (LinearLayout) mView
+            //                    .findViewById(R.id.toolbar_leftLayout);
+            //            rightLayout = (LinearLayout) mView
+            //                    .findViewById(R.id.toolbar_rightLayout);
 
         }
 

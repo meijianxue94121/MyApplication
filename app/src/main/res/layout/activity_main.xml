@@ -1,103 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <GridLayout
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.example.dojoy.myapplication.views.MyToolBar
         android:layout_width="match_parent"
-        android:columnCount="3"
+        android:layout_height="wrap_content"
+        app:titleText="测试程序"></com.example.dojoy.myapplication.views.MyToolBar>
 
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/mCardView"
-            android:layout_width="wrap_content"
-            android:layout_margin="5dp"
-            android:padding="10dp"
-            android:background="@color/_ffff00"
-            android:clickable="true" android:minWidth="100dp"
-            android:text="CardView"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mCoverFlow"
-            android:layout_width="wrap_content"          android:clickable="true"
-            android:padding="10dp" android:layout_margin="5dp"
-            android:background="@color/_ffff00"
-            android:text="mCoverFlow" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mStickyHeader"
-            android:layout_width="wrap_content"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00" android:layout_margin="5dp"
-            android:text="mSticky" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mDialog" android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00"
-            android:text="mDialog" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mBaidu" android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00"
-            android:text="mBaidu" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mHeadScroll"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:background="@color/_ffff00"          android:clickable="true"
-            android:text="mHeadScroll" android:minWidth="100dp"
-            android:layout_height="wrap_content" android:layout_margin="5dp"
-            />
-        <TextView
-            android:id="@+id/mHeadListView"
-            android:layout_width="wrap_content" android:layout_margin="5dp"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00"
-            android:text="mHeadList" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mHeadRecycler" android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:background="@color/_ffff00"          android:clickable="true"
-            android:text="mRecycler" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mPhotoView"
-            android:layout_width="wrap_content"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00" android:layout_margin="5dp"
-            android:text="mPhotoView" android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
-        <TextView
-            android:id="@+id/mViewPager" android:layout_margin="5dp"
-            android:layout_width="wrap_content"
-            android:padding="10dp"          android:clickable="true"
-            android:background="@color/_ffff00"
-            android:text="mViewPager"
-            android:minWidth="100dp"
-            android:layout_height="wrap_content"
-            />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:columnCount="3">
+
+            <TextView
+                android:id="@+id/mCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="CardView"
+                />
+
+            <TextView
+                android:id="@+id/mCoverFlow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mCoverFlow"
+                />
+
+            <TextView
+                android:id="@+id/mStickyHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mSticky"
+                />
+
+            <TextView
+                android:id="@+id/mDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mDialog"
+                />
+
+            <TextView
+                android:id="@+id/mBaidu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mBaidu"
+                />
+
+            <TextView
+                android:id="@+id/mHeadScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mHeadScroll"
+                />
+
+            <TextView
+                android:id="@+id/mHeadListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mHeadList"
+                />
+
+            <TextView
+                android:id="@+id/mHeadRecycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mRecycler"
+                />
+
+            <TextView
+                android:id="@+id/mPhotoView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mPhotoView"
+                />
+
+            <TextView
+                android:id="@+id/mViewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="mViewPager"
+                />
 
 
+        </GridLayout>
 
-    </GridLayout>
-
-</ScrollView>
+    </ScrollView>
 </LinearLayout>

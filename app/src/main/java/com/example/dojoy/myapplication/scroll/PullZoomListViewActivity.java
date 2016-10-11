@@ -13,19 +13,19 @@ import android.widget.ArrayAdapter;
 import com.ecloud.pulltozoomview.PullToZoomListViewEx;
 import com.example.dojoy.myapplication.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class PullZoomListViewActivity extends AppCompatActivity {
 
-    @InjectView(R.id.mList)
+    @BindView(R.id.mList)
     PullToZoomListViewEx mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pull_zoom_list_view);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         loadViewForCode();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

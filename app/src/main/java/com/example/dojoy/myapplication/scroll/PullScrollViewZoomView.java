@@ -12,12 +12,12 @@ import android.widget.LinearLayout;
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dojoy.myapplication.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class PullScrollViewZoomView extends AppCompatActivity {
 
-    @InjectView(R.id.mPullToZoom)
+    @BindView(R.id.mPullToZoom)
     PullToZoomScrollViewEx mPullToZoom;
 
     @Override
@@ -25,7 +25,7 @@ public class PullScrollViewZoomView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pull_scroll_zoom_view);
         //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         loadViewForCode();
         //        mPullToZoom.getPullRootView().findViewById(R.id.tv_test1).setOnClickListener(new View.OnClickListener() {
         //            @Override

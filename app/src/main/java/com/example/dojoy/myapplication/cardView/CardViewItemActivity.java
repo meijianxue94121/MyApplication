@@ -16,28 +16,28 @@ import com.example.dojoy.myapplication.helputils.ZhUtils;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class CardViewItemActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
-    @InjectView(R.id.careViewRecyclerView)
+    @BindView(R.id.careViewRecyclerView)
     RecyclerView mRecyclerView;
-    @InjectView(R.id.cardViewRefreshLayout)
+    @BindView(R.id.cardViewRefreshLayout)
     SwipeRefreshLayout mRefreshLayout;
     CardViewAdapter adapter;
-    @InjectView(R.id.Layout)
+    @BindView(R.id.Layout)
     LinearLayout Layout;
     //    @InjectView(R.id.topBar)
-//    MyToolBar topbar;
-//    @InjectView(R.id.scroll)
-//    MyScrollView scroll;
+    //    MyToolBar topbar;
+    //    @InjectView(R.id.scroll)
+    //    MyScrollView scroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         init();
     }
 

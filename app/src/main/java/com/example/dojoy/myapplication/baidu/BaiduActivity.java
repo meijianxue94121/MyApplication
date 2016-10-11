@@ -25,7 +25,7 @@ public class BaiduActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidu);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
 
     }

@@ -13,6 +13,7 @@ import com.example.dojoy.myapplication.photos.PhotoViewActivity;
 import com.example.dojoy.myapplication.scroll.PullScrollViewZoomView;
 import com.example.dojoy.myapplication.scroll.PullZoomListViewActivity;
 import com.example.dojoy.myapplication.scroll.recyclerview.PullToZoomRecyclerActivity;
+import com.example.dojoy.myapplication.stickHeader.ui.MyStickHearder;
 
 import java.util.ArrayList;
 
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.mStickyHeader:
                 //头部的Recycler版本
-                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
+                startActivity(new Intent(this, MyStickHearder.class));
+//                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
                 break;
         }
     }

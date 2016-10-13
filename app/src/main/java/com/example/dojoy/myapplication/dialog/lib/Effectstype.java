@@ -3,19 +3,19 @@ package com.example.dojoy.myapplication.dialog.lib;
 
 import com.example.dojoy.myapplication.dialog.lib.effects.BaseEffects;
 import com.example.dojoy.myapplication.dialog.lib.effects.FadeIn;
+import com.example.dojoy.myapplication.dialog.lib.effects.Fall;
 import com.example.dojoy.myapplication.dialog.lib.effects.FlipH;
 import com.example.dojoy.myapplication.dialog.lib.effects.FlipV;
 import com.example.dojoy.myapplication.dialog.lib.effects.NewsPaper;
+import com.example.dojoy.myapplication.dialog.lib.effects.RotateBottom;
+import com.example.dojoy.myapplication.dialog.lib.effects.RotateLeft;
+import com.example.dojoy.myapplication.dialog.lib.effects.Shake;
 import com.example.dojoy.myapplication.dialog.lib.effects.SideFall;
+import com.example.dojoy.myapplication.dialog.lib.effects.SlideBottom;
 import com.example.dojoy.myapplication.dialog.lib.effects.SlideLeft;
 import com.example.dojoy.myapplication.dialog.lib.effects.SlideRight;
 import com.example.dojoy.myapplication.dialog.lib.effects.SlideTop;
-import com.example.dojoy.myapplication.dialog.lib.effects.SlideBottom;
-import com.example.dojoy.myapplication.dialog.lib.effects.Fall;
-import com.example.dojoy.myapplication.dialog.lib.effects.RotateBottom;
-import com.example.dojoy.myapplication.dialog.lib.effects.RotateLeft;
 import com.example.dojoy.myapplication.dialog.lib.effects.Slit;
-import com.example.dojoy.myapplication.dialog.lib.effects.Shake;
 
 /*
  * Copyright 2014 litao

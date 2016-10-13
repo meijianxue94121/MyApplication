@@ -47,6 +47,8 @@
         </activity>
         <activity android:name=".gallery.ActivityCoverFlow">
         </activity>
+        <activity android:name=".stickHeader.ui.MyStickHearder">
+        </activity>
         <activity
             android:name=".stickHeader.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

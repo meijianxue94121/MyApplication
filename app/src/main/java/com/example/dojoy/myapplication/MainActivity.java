@@ -9,7 +9,9 @@ import com.example.dojoy.myapplication.baidu.BaiduActivity;
 import com.example.dojoy.myapplication.cardView.CardViewItemActivity;
 import com.example.dojoy.myapplication.dialog.DialogActivity;
 import com.example.dojoy.myapplication.gallery.ActivityCoverFlow;
+import com.example.dojoy.myapplication.okhttps.OkHttpActivity;
 import com.example.dojoy.myapplication.photos.PhotoViewActivity;
+import com.example.dojoy.myapplication.recycleSlide.mcxtzhang.swipedelmenu.FullDemo.FullDelDemoActivity;
 import com.example.dojoy.myapplication.scroll.PullScrollViewZoomView;
 import com.example.dojoy.myapplication.scroll.PullZoomListViewActivity;
 import com.example.dojoy.myapplication.scroll.recyclerview.PullToZoomRecyclerActivity;
@@ -23,8 +25,8 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
     ArrayList<String> ad;
 
-    @OnClick({R.id.mCardView,R.id.mStickyHeader, R.id.mCoverFlow, R.id.mDialog, R.id.mBaidu,
-            R.id.mHeadScroll, R.id.mHeadListView, R.id.mHeadRecycler, R.id.mPhotoView, R.id.mViewPager})
+    @OnClick({R.id.mCardView, R.id.mStickyHeader, R.id.mCoverFlow, R.id.mDialog, R.id.mBaidu,
+            R.id.mHeadScroll, R.id.mHeadListView, R.id.mHeadRecycler, R.id.mPhotoView, R.id.mViewPager, R.id.mOkHttps, R.id.mRecyclerSlide})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.mCardView:
@@ -66,7 +68,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mStickyHeader:
                 //头部的Recycler版本
                 startActivity(new Intent(this, MyStickHearder.class));
-//                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
+                //                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
+                break;
+            case R.id.mOkHttps:
+                //头部的Recycler版本
+                startActivity(new Intent(this, OkHttpActivity.class));
+                //                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
+                break;
+            case R.id.mRecyclerSlide:
+                //头部的Recycler版本
+                startActivity(new Intent(this, FullDelDemoActivity.class));
+                //                startActivity(new Intent(this, com.example.dojoy.myapplication.stickHeader.ui.MainActivity.class));
                 break;
         }
     }

@@ -63,9 +63,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     provided "org.projectlombok:lombok:1.16.10"
-//    apt "org.projectlombok:lombok:1.16.10"
-//    provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'javax.annotation:javax.annotation-api:1.2'
-//    compile 'com.android.support:support-annotations:21.0.2'
-//    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
+//    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.zhy:okhttputils:2.0.0'
 }

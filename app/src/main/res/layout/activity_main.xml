@@ -140,7 +140,28 @@
                 android:text="mViewPager"
                 />
 
-
+            <TextView
+                android:id="@+id/mOkHttps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="okHttps"
+                />
+            <TextView
+                android:id="@+id/mRecyclerSlide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/_ffff00"
+                android:clickable="true"
+                android:minWidth="100dp"
+                android:padding="10dp"
+                android:text="左右滑动"
+                />
         </GridLayout>
 
     </ScrollView>

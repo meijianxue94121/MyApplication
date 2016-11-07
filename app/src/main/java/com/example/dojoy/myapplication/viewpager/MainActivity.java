@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         douBanService.getRepoData("20").enqueue(new Callback<ListDTO<SubjectsInfo>>() {
             @Override
             public void onResponse(Call<ListDTO<SubjectsInfo>> call, Response<ListDTO<SubjectsInfo>> response) {
-                Log.e("onResponse", response.body().toString());
+//                Log.e("onResponse", response.body().toString());
                 list.addAll(response.body().getList());
                 viewPager.setAdapter(adapter);
 

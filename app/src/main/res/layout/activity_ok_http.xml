@@ -27,4 +27,37 @@
         android:minHeight="50dp"
         android:text="post"
         android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/put"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="put"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="del"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/patch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="patch"
+        android:textSize="30sp"/>
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -22,6 +23,7 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -32,6 +34,15 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.example.dojoy.myapplication.R;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -915,23 +926,24 @@ public class ZhUtils {
          */
         public static void MyToast(Context context, String msg) {
             //            ToastUtil.showToast(msg);
-            //            if (mToast == null) {
-            //                mToast = new Toast(context);
-            //            }
-            //            if (view == null) {
-            //                view = new TextView(context);
-            //                view.setBackgroundResource(R.drawable.gray4dp_circle_shape);
-            //                //                view.setAlpha(1f);
-            //                view.setPadding(10, 5, 10, 5);
-            //                view.setTextSize(15);
-            //                view.setTextColor(Color.parseColor("#ffffff"));
-            //                view.setGravity(Gravity.CENTER);
-            //            }
-            //            view.setText(msg);
-            //            mToast.setDuration(Toast.LENGTH_SHORT);
-            //            mToast.setView(view);
-            //            mToast.show();
+            if (mToast == null) {
+                mToast = new Toast(context);
+            }
+            if (view == null) {
+                view = new TextView(context);
+                view.setBackgroundResource(R.drawable.bg_toast);
+                //                view.setAlpha(1f);
+                view.setPadding(20, 5, 20, 5);
+                view.setTextSize(15);
+                view.setTextColor(Color.parseColor("#ffffff"));
+                view.setGravity(Gravity.CENTER);
+            }
+            view.setText(msg);
+            mToast.setDuration(Toast.LENGTH_SHORT);
+            mToast.setView(view);
+            mToast.show();
         }
+
 
         /**
          * 自定义吐司样式，方便统一修改
@@ -942,10 +954,42 @@ public class ZhUtils {
         public static void MyToast(Context context, int msgId) {
 
             //            ToastUtil.showToast(msgId);
-            //     MyToast(context, context.getResources().getString(msgId));
+            MyToast(context, context.getResources().getString(msgId));
         }
 
 
+    }
+
+    /**
+     * 初始化ImageLoad
+     *
+     * @param context
+     */
+    public static void configImageLoader(Context context) {
+        // 初始化ImageLoader
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.mipmap.ic_launcher) // 设置图片加载或解码过程中发生错误显示的图片
+                .bitmapConfig(Bitmap.Config.RGB_565) // 设置图片的解码类型
+                .imageScaleType(ImageScaleType.EXACTLY)//图片会缩放到目标大小完全
+                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+                //                .displayer(new FadeInBitmapDisplayer(1000))//淡入
+                .build(); // 创建配置过得DisplayImageOption对象
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .defaultDisplayImageOptions(options)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .memoryCache(new LruMemoryCache(2 * 1024 * 1024)) //可以通过自己的内存缓存实现
+                .memoryCacheSize(2 * 1024 * 1024)  // 内存缓存的最大值
+                .discCacheFileCount(100)//缓存文件数
+                .discCacheSize(50 * 1024 * 1024)//缓存大小
+                .discCache(new UnlimitedDiscCache(ZhUtils.getCacheDir(context)))// 自定义缓存路径
+                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+        ImageLoader.getInstance().init(config);
     }
 
     /**

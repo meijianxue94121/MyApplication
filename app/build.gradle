@@ -66,4 +66,5 @@ dependencies {
     compile 'javax.annotation:javax.annotation-api:1.2'
 //    provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.zhy:okhttputils:2.0.0'
+    compile 'com.allen.supertextview:supertextview:1.0.1'
 }

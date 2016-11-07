@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".stickHeader.StickyHeadersDemoApp"
@@ -52,11 +53,6 @@
         <activity
             android:name=".stickHeader.ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".stickHeader.ui.AddressBookDemoActivity"
@@ -114,6 +110,23 @@
         </activity>
         <activity android:name=".recycleSlide.mcxtzhang.swipedelmenu.ListViewDelDemoActivity">
         </activity>
+        <activity android:name=".superTextView.MainAct">
+        </activity>
+        <activity android:name=".appWidget.TestActivity"/>
+
+        <receiver android:name=".appWidget.MyAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <!--<action android:name="com.pg.appwidget_provider"/>-->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.pg.appwidget_provider"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/my_appwidget_provider"/>
+        </receiver>
     </application>
 
 </manifest>

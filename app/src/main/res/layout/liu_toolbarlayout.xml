@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/toolBar"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:gravity="center_vertical"
@@ -24,8 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/_ff0000"
-            android:textSize="13sp"
+
+            android:textColor="#f95e00"
+            android:textSize="15sp"
             android:visibility="gone"/>
     </LinearLayout>
 
@@ -34,9 +36,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
+        android:ellipsize="end"
         android:gravity="center"
+        android:singleLine="true"
         android:textColor="#f95e00"
-        android:textSize="17sp"
+        android:textSize="16sp"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -52,8 +56,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
-            android:textColor="@color/_0000ff"
-            android:textSize="13sp"/>
+            android:textColor="#f95e00"
+            android:textSize="15sp"/>
 
         <ImageView
             android:id="@+id/toolbar_rightButton"

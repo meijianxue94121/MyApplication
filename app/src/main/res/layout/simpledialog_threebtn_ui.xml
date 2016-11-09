@@ -22,7 +22,6 @@
             android:textColor="#999999"
             android:textSize="18sp"/>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +34,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
-                android:maxHeight="225dp"
                 android:textColor="#666666"
                 android:textSize="15sp"
                 android:visibility="gone"/>
@@ -78,27 +76,43 @@
 
             <TextView
                 android:id="@+id/simple_leftCommit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:background="#ff0000"
                 android:clickable="true"
                 android:gravity="center"
-                android:minWidth="135dp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/_ffffff"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/simple_midCommit"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="#ffabab"
+                android:clickable="true"
+                android:gravity="center"
+                android:textColor="@color/_ffffff"
                 android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/simple_rightCommit"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
                 android:background="#ffff00"
                 android:clickable="true"
                 android:gravity="center"
-                android:minWidth="135dp"
-                android:textColor="#999999"
-                android:textSize="16sp"/>
+                android:textColor="@color/_ffffff"
+                android:textSize="16sp"
+                />
         </LinearLayout>
     </LinearLayout>
 

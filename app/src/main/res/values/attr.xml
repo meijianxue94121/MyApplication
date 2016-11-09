@@ -7,8 +7,15 @@
         <attr name="leftText" format="string"/>
         <attr name="rightText" format="string"/>
         <attr name="titleText" format="string"/>
-
+        <attr name="bgColor" format="color"/>
     </declare-styleable>
+    <!--  占位图属性 -->
+    <declare-styleable name="MyOccupy">
+        <attr name="imgBtnIcon" format="reference"/>
+        <attr name="textText" format="string"/>
+        <attr name="commitText" format="string"/>
+    </declare-styleable>
+
     <declare-styleable name="FancyCoverFlow">
         <attr name="unselectedAlpha" format="float"/>
         <attr name="unselectedSaturation" format="float"/>

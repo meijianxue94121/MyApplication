@@ -5,14 +5,22 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import sdk.utils.RequestParam;
-
 /**
  * post请求发送的参数
  *
  * @author Zhang
  */
-public class OkHttpParam extends RequestParam {
+public class OkHttpParam {
+    public HashMap<String, String> params;
+
+    public HashMap<String, String> getParams() {
+        return params;
+    }
+
+    public void setParams(HashMap<String, String> params) {
+        this.params = params;
+    }
+
     public void addParam(String key, String value) {
         if (params == null) {
             params = new HashMap<String, String>();

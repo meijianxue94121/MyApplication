@@ -1,41 +1,28 @@
-package com.example.dojoy.myapplication.stickHeader;
+package com.example.dojoy.myapplication.base;
 
 import android.app.Activity;
 import android.app.Application;
 
-import com.example.dojoy.myapplication.helputils.ZhUtils;
-import com.example.dojoy.myapplication.stickHeader.api.RandomUserLoader;
-
 import java.util.Stack;
 
-
 /**
- * Created by shamyl on 4/22/16.
+ * Created by dojoy on 2016/11/9.
  */
-public class StickyHeadersDemoApp extends Application {
 
-    RandomUserLoader randomUserLoader;
+public class MyApplication extends Application {
+    Stack<Activity> activities;
+    public static MyApplication application;
+
+    public static MyApplication getInstance() {
+        return application;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
         activities = new Stack<Activity>();
-        randomUserLoader = new RandomUserLoader();
-        ZhUtils.configImageLoader(this);
     }
-
-    public RandomUserLoader getRandomUserLoader() {
-        return randomUserLoader;
-    }
-
-    Stack<Activity> activities;
-    public static StickyHeadersDemoApp application;
-
-    public static StickyHeadersDemoApp getInstance() {
-        return application;
-    }
-
 
     public void addAct(Activity activity) {
         if (activities != null) {

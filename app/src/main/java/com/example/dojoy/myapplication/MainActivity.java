@@ -9,15 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.dojoy.myapplication.baidu.BaiduActivity;
+import com.example.dojoy.myapplication.base.MyDialogAct;
 import com.example.dojoy.myapplication.cardView.CardViewItemActivity;
 import com.example.dojoy.myapplication.dialog.DialogActivity;
-import com.example.dojoy.myapplication.dialogs.CityPicker_three;
-import com.example.dojoy.myapplication.dialogs.DialogUtils;
 import com.example.dojoy.myapplication.gallery.ActivityCoverFlow;
 import com.example.dojoy.myapplication.helputils.ZhUtils;
 import com.example.dojoy.myapplication.okhttps.OkHttpActivity;
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case 7:
-                ZhUtils.ToastUtils.MyToast(this, "无效测试先不管了");
+                ZhUtils.ToastUtils.showToast(this, "无效测试先不管了");
                 break;
             case 8:
                 //CoverFlow图片展示控件
@@ -125,27 +123,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 13:
                 //绑定一个桌面组件
-                ZhUtils.ToastUtils.MyToast(this, "无效测试先不管了");
+                ZhUtils.ToastUtils.showToast(this, "无效测试先不管了");
                 break;
             case 14:
                 //绑定桌面控件
-                ZhUtils.ToastUtils.MyToast(this, "无效测试先不管了");
+                ZhUtils.ToastUtils.showToast(this, "无效测试先不管了");
                 break;
             case 15:
-                //地址弹窗
-                alertDialog = DialogUtils.SimpleDialog.SimpleDialog22(null, MainActivity.this, "温馨提示", "aha", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CityPicker_three viewById = (CityPicker_three) alertDialog.findViewById(R.id.citypicker);
-                        Toast.makeText(MainActivity.this, viewById.getInfo(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                }, "确定", "取消", 0, 1);
+                //
+                startActivity(new Intent(MainActivity.this, MyDialogAct.class));
                 break;
         }
     }
@@ -174,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         da.add("SuperTextView");
         da.add("桌面快捷0");
         da.add("桌面快捷1");
-        da.add("地址弹窗");
+        da.add("自定义dialog");
         return da;
     }
 

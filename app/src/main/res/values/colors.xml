@@ -33,4 +33,5 @@
     <color name="tabTextSelected">#fff</color>
 
     <color name="headerBackground">#eeeeee</color>
+    <color name="_f8f8f8">#f8f8f8</color>
 </resources>

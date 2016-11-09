@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    android:orientation="vertical"
+    tools:context="com.example.dojoy.myapplication.base.MyDialogAct">
+
+    <TextView
+        android:id="@+id/twoMessAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#ababab"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="MessAlert 2个按钮的"
+        android:textColor="#ff0000"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/threeMessAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#ababab"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="MessAlert 3个按钮的"
+        android:textColor="#ff0000"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/twoEditAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#ababab"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:text="EditAlert 2个按钮的"
+        android:textColor="#ff0000"
+        android:textSize="20sp"/>
+</LinearLayout>

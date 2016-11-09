@@ -6,14 +6,18 @@ import android.app.ActivityManager;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.renderscript.Allocation;
@@ -35,6 +39,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.dojoy.myapplication.R;
+import com.example.dojoy.myapplication.base.BaseReceiver;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -51,12 +56,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.security.MessageDigest;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -97,6 +109,7 @@ import java.util.List;
  * 33.隐藏手机号中间四位
  */
 public class ZhUtils {
+
 
     /**
      * 1、把文件读取出来转成字节数组
@@ -692,7 +705,65 @@ public class ZhUtils {
     }
 
     /**
-     * 23、判断手机连接的网络类型(2G,3G,4G)
+     * 23、获取状态栏高度，获取是否存在NavigationBar注意，要在onWindowFocusChanged中调用，在onCreate中获取高度为0
+     *
+     * @param context
+     * @return
+     */
+    //
+    public static boolean checkDeviceHasNavigationBar(Context context) {
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return hasNavigationBar;
+
+    }
+
+    /**
+     * 24、获取状态栏高度，注意，要在onWindowFocusChanged中调用，在onCreate中获取高度为0
+     *
+     * @param mActivity
+     * @return
+     */
+    public static int getStatusBarHeight2(Activity mActivity) {
+        Resources resources = mActivity.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        //        Log.v("dbw", "Status height:" + height);
+        return height;
+    }
+
+    /**
+     * 25、获取底部导航状态栏高度，注意，要在onWindowFocusChanged中调用，在onCreate中获取高度为0
+     *
+     * @param mActivity
+     * @return
+     */
+    public static int getNavigationBarHeight(Activity mActivity) {
+        Resources resources = mActivity.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
+    }
+
+
+    /**
+     * 26、判断手机连接的网络类型(2G,3G,4G)
      */
     static class Constants {
         /**
@@ -723,7 +794,7 @@ public class ZhUtils {
     }
 
     /**
-     * 24.获取网络类型
+     * 27.获取网络类型
      *
      * @param context 上下文
      * @return
@@ -760,7 +831,7 @@ public class ZhUtils {
     }
 
     /**
-     * 25、判断当前App处于前台还是后台状态
+     * 28、判断当前App处于前台还是后台状态
      *
      * @param context
      * @return
@@ -780,7 +851,7 @@ public class ZhUtils {
     }
 
     /**
-     * 26、判断当前是否是WIFI连接状态
+     * 29、判断当前是否是WIFI连接状态
      *
      * @param context
      * @return
@@ -797,7 +868,7 @@ public class ZhUtils {
     }
 
     /**
-     * 27.进度框
+     * 30.进度框
      */
     public static class ProgressDialog {
         /**
@@ -848,17 +919,31 @@ public class ZhUtils {
     }
 
     /**
-     * 28.传进来一个double格式化保留2位
+     * 31.传进来一个double格式化保留2位
      *
      * @param d
      * @return
      */
     public static String keep2Double(double d) {
-        return (new DecimalFormat("0.00").format(d));
+        BigDecimal bd = new BigDecimal(d);
+        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+        if ((bd.doubleValue() - bd.intValue()) < 1e-10) {
+            return bd.intValue() + "";
+        } else {
+            return (bd.doubleValue() + "");
+        }
+        //        return bd.doubleValue() + "";
+        //                int di = (int) (d * 100);
+        //                if ((di % 100) > 0)
+        //                    return (new DecimalFormat("0.00").format(d));
+        //                else {
+        //                    return (int) d + "";
+        //                }
+        //        return (new DecimalFormat("0.00").format(d));
     }
 
     /**
-     * 29.隐藏虚拟键盘
+     * 32.隐藏虚拟键盘
      */
     public static void HideKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -869,7 +954,7 @@ public class ZhUtils {
     }
 
     /**
-     * 30.显示虚拟键盘
+     * 33.显示虚拟键盘
      */
     public static void ShowKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -879,7 +964,7 @@ public class ZhUtils {
     }
 
     /**
-     * 31.md5加密
+     * 34.md5加密
      *
      * @param s
      * @return
@@ -912,7 +997,7 @@ public class ZhUtils {
     }
 
     /**
-     * 32.自定义吐司
+     * 35.自定义吐司
      */
     public static class ToastUtils {
         public static Toast mToast;
@@ -924,16 +1009,14 @@ public class ZhUtils {
          * @param context
          * @param msg
          */
-        public static void MyToast(Context context, String msg) {
-            //            ToastUtil.showToast(msg);
+        public static void showToast(Context context, String msg) {
             if (mToast == null) {
                 mToast = new Toast(context);
             }
             if (view == null) {
                 view = new TextView(context);
                 view.setBackgroundResource(R.drawable.bg_toast);
-                //                view.setAlpha(1f);
-                view.setPadding(20, 5, 20, 5);
+                view.setPadding(20, 10, 20, 10);
                 view.setTextSize(15);
                 view.setTextColor(Color.parseColor("#ffffff"));
                 view.setGravity(Gravity.CENTER);
@@ -944,56 +1027,22 @@ public class ZhUtils {
             mToast.show();
         }
 
-
         /**
          * 自定义吐司样式，方便统一修改
          *
          * @param context
          * @param msgId
          */
-        public static void MyToast(Context context, int msgId) {
+        public static void showToast(Context context, int msgId) {
 
-            //            ToastUtil.showToast(msgId);
-            MyToast(context, context.getResources().getString(msgId));
+            showToast(context, context.getResources().getString(msgId));
         }
 
 
     }
 
     /**
-     * 初始化ImageLoad
-     *
-     * @param context
-     */
-    public static void configImageLoader(Context context) {
-        // 初始化ImageLoader
-        DisplayImageOptions options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片
-                .showImageForEmptyUri(R.mipmap.ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.mipmap.ic_launcher) // 设置图片加载或解码过程中发生错误显示的图片
-                .bitmapConfig(Bitmap.Config.RGB_565) // 设置图片的解码类型
-                .imageScaleType(ImageScaleType.EXACTLY)//图片会缩放到目标大小完全
-                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
-                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
-                //                .displayer(new FadeInBitmapDisplayer(1000))//淡入
-                .build(); // 创建配置过得DisplayImageOption对象
-
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
-                .defaultDisplayImageOptions(options)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .denyCacheImageMultipleSizesInMemory()
-                .discCacheFileNameGenerator(new Md5FileNameGenerator())
-                .memoryCache(new LruMemoryCache(2 * 1024 * 1024)) //可以通过自己的内存缓存实现
-                .memoryCacheSize(2 * 1024 * 1024)  // 内存缓存的最大值
-                .discCacheFileCount(100)//缓存文件数
-                .discCacheSize(50 * 1024 * 1024)//缓存大小
-                .discCache(new UnlimitedDiscCache(ZhUtils.getCacheDir(context)))// 自定义缓存路径
-                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
-        ImageLoader.getInstance().init(config);
-    }
-
-    /**
-     * 33.隐藏手机号中间4位
+     * 36.隐藏手机号中间4位
      *
      * @param code
      * @return
@@ -1001,7 +1050,6 @@ public class ZhUtils {
      */
     public static String getCode(String code) throws Exception {
         if (code != null && !TextUtils.isEmpty(code) && code.length() == 11) {
-
             return code.substring(0, 3) + "****" + code.substring(code.length() - 4);
         } else
             throw new Exception("手机号码有误");
@@ -1054,7 +1102,7 @@ public class ZhUtils {
     //    }
 
     /**
-     * 把日期转成 几天前，或几秒前
+     * 37.把日期转成 几天前，或几秒前
      *
      * @param time
      * @return
@@ -1063,7 +1111,7 @@ public class ZhUtils {
         String finalTime = time;
         try {
             SimpleDateFormat format = new SimpleDateFormat(
-                    "yyyy-MM-dd HH:mm:ss");
+                    "yyyy年MM月dd日 HH:mm:ss");
             // 此处会抛异常
             Date date = format.parse(time);
             // 获取毫秒数
@@ -1084,7 +1132,8 @@ public class ZhUtils {
             if (timex < cha) {
                 long second = timex / 1000;// 转成秒
                 long timeVo = second;
-                finalTime = timeVo + "秒前";
+                //                finalTime = timeVo + "秒前";
+                finalTime = "刚刚";
                 // 大于60秒，要转成分
                 if (second > 60) {
                     timeVo = second / 60;
@@ -1104,7 +1153,7 @@ public class ZhUtils {
                     finalTime = "昨天";
                 } else {
                     // 否则显示日期
-                    finalTime = time.substring(5, 16);
+                    finalTime = time.substring(5, 17);
                 }
             }
         } catch (ParseException e) {
@@ -1114,7 +1163,7 @@ public class ZhUtils {
     }
 
     /**
-     * 判断是否当前版本大于4.4，使用沉浸式
+     * 38判断是否当前版本大于4.4，使用沉浸式
      *
      * @return
      */
@@ -1129,7 +1178,7 @@ public class ZhUtils {
     //    android.R.color.holo_red_light
 
     /**
-     * refreshLayout获得刷新颜色
+     * 39refreshLayout获得刷新颜色
      *
      * @return
      */
@@ -1140,6 +1189,599 @@ public class ZhUtils {
                 android.R.color.holo_red_light
         };
     }
+
+    /**
+     * 40传入bitmapo获得其大小
+     *
+     * @param bitmap
+     * @return
+     */
+    public static int getBitmapSize(Bitmap bitmap) {
+        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {    //API 19
+        //            return bitmap.getAllocationByteCount();
+        //        }
+        //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1) {//API 12
+        //            return bitmap.getByteCount();
+        //        }
+        return bitmap.getRowBytes() * bitmap.getHeight();                //earlier version
+    }
+
+
+    /**
+     * 41方法：从asset中获取文件并读取数据
+     */
+
+    public static String getFromAsset(Context context, String fileName) {
+        //        InputStream resourceAsStream = context.getClassLoader().getResourceAsStream("assets/city.json");
+        String result = "";
+        try {
+            InputStream in = context.getResources().getAssets().open(fileName);     //从Assets中的文件获取输入流
+            byte[] bytes = new byte[in.available()];
+            int read = in.read(bytes);
+            result = new String(bytes);
+            return result;
+
+        } catch (IOException e) {
+
+
+        }
+        return "";
+    }
+
+    /**
+     * 42方法：获取一个option
+     */
+    public static DisplayImageOptions getDisplayOption(int resId) {
+
+        return getDisplayOption(resId, resId, resId);
+    }
+
+    /**
+     * 43
+     *
+     * @param loadingId 加载中图片
+     * @param errId     地址无效默认图片
+     * @param failId    加载失败默认图片
+     * @return
+     */
+    public static DisplayImageOptions getDisplayOption(int loadingId, int errId, int failId) {
+        // 初始化ImageLoader
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(loadingId) // 设置图片下载期间显示的图片
+                .showImageForEmptyUri(errId) // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(failId) // 设置图片加载或解码过程中发生错误显示的图片
+                .bitmapConfig(Bitmap.Config.RGB_565) // 设置图片的解码类型
+                .imageScaleType(ImageScaleType.EXACTLY)//图片会缩放到目标大小完全
+                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+                //                .displayer(new FadeInBitmapDisplayer(1000))//淡入
+                .build(); // 创建配置过得DisplayImageOption对象
+        return options;
+    }
+
+    /**
+     * 初始化ImageLoad
+     *
+     * @param context
+     */
+    public static void configImageLoader(Context context) {
+        // 初始化ImageLoader
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.mipmap.ic_launcher) // 设置图片加载或解码过程中发生错误显示的图片
+                .bitmapConfig(Bitmap.Config.RGB_565) // 设置图片的解码类型
+                .imageScaleType(ImageScaleType.EXACTLY)//图片会缩放到目标大小完全
+                .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
+                .cacheOnDisc(true) // 设置下载的图片是否缓存在SD卡中
+                //                .displayer(new FadeInBitmapDisplayer(1000))//淡入
+                .build(); // 创建配置过得DisplayImageOption对象
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .defaultDisplayImageOptions(options)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+                .memoryCache(new LruMemoryCache(2 * 1024 * 1024)) //可以通过自己的内存缓存实现
+                .memoryCacheSize(2 * 1024 * 1024)  // 内存缓存的最大值
+                .discCacheFileCount(100)//缓存文件数
+                .discCacheSize(50 * 1024 * 1024)//缓存大小
+                .discCache(new UnlimitedDiscCache(ZhUtils.getCacheDir(context)))// 自定义缓存路径
+                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
+        ImageLoader.getInstance().init(config);
+    }
+
+    /**
+     * 44验证手机号码合法性
+     *
+     * @param tel
+     * @return
+     */
+    public static boolean isMobile(String tel) {
+        //          Pattern pattern = Pattern.compile("^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8]))//d{8}$");
+        if (tel.length() != 11) {
+            return false;
+        }
+
+        Pattern pattern = Pattern.compile("^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8]))\\d{8}$");
+        Matcher m = pattern.matcher(tel);
+        return m.matches();
+    }
+
+    /**
+     * 44验证手机号码合法性
+     *
+     * @param cardNo
+     * @return
+     */
+    public static boolean isIDCard(String cardNo) {
+        IdcardValidator iv = new IdcardValidator();
+        return iv.isValidatedAllIdcard(cardNo);
+
+    }
+
+    /**
+     * 45 拨打电话
+     *
+     * @param context
+     * @param tel
+     */
+    public static void callPhone(Context context, String tel) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 46为上下文注册广播,基础广播
+     */
+    //初始化广播
+    public static BaseReceiver initReceiver(Context context, String tag) {
+        BaseReceiver refreshReceiver = new BaseReceiver(context, tag);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(tag);
+        context.registerReceiver(refreshReceiver, intentFilter);
+        return refreshReceiver;
+    }
+
+
+    /**
+     * 47发请求是创建所需的hashMap
+     *
+     * @param needLogin 是否登陆，需要自动添加userId,SessionToken,否则返回空的HashMap
+     */
+    //    public static HashMap<String, String> getLoginRequestMap(boolean needLogin) {
+    //        HashMap<String, String> hashMap = new HashMap<>();
+    //        if (needLogin) {
+    //            if (MyApplication.getInstance().isLogin()) {
+    //                hashMap.put("userID", MyApplication.getInstance().userInfo.userid + "");
+    //                hashMap.put("sessionToken", MyApplication.getInstance().userInfo.token + "");
+    //            }
+    //        }
+    //        hashMap.put("phoneModel", MyApplication.getInstance().getRelease().replaceAll(" ", ""));
+    //        hashMap.put("v", MyApplication.getInstance().getVersionCode() + "");
+    //
+    //        return hashMap;
+    //    }
+
+    /**
+     * 48获取手机型号
+     *
+     * @return
+     */
+    public static String getMobileType() {
+        return Build.MODEL;
+    }
+
+    /**
+     * 49获取SDK版本号
+     *
+     * @return
+     */
+    public static String getSdkType() {
+        return Build.VERSION.SDK;
+    }
+
+    /**
+     * 50获取系统型号
+     *
+     * @return
+     */
+    public static String getVersionType() {
+        return Build.VERSION.RELEASE;
+    }
+
+    /**
+     * 51使用bigdecimal进行运算，保留2位小数点，返回double
+     *
+     * @return
+     */
+    public static class BigDecimalUse {
+
+        // 默认运算精度,<span style="color:#ff0000;">保留有效数字6位</span>
+        private static final int DEF_DIV_SCALE = 2;
+        private static MathContext mc = new MathContext(DEF_DIV_SCALE,
+                RoundingMode.HALF_UP); //RoundingMode.HALF_UP 舍入模式，四舍五入 向上
+
+        //        /**
+        //         * 测试除法
+        //         */
+        //        public static void main(String[] args) {
+        //            double bb1 = 1;
+        //            double bb2 = 3;
+        //            String pattern = "0.000000";    //<span style="color:#ff0000;">保留小数点后6位</span>
+        //            DecimalFormat df = new DecimalFormat(pattern);
+        //
+        //            double res = divide(bb1, bb2);
+        //            System.out.println(df.format(res));
+        //        }
+
+        public static double add(double v1, double v2, boolean isDouble) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));    //用 new BigDecimal(String str)构造器才能构造出准确的Decimal
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return isDouble ? (b1.add(b2, mc)).doubleValue() : (b1.add(b2, mc)).intValue();
+        }
+
+        public static double subtract(double v1, double v2, boolean isDouble) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return isDouble ? (b1.subtract(b2, mc)).doubleValue() : (b1.subtract(b2, mc)).intValue();
+        }
+
+        public static double multiply(double v1, double v2, boolean isDouble) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return isDouble ? (b1.multiply(b2, mc)).doubleValue() : (b1.multiply(b2, mc)).intValue();
+        }
+
+        public static double divide(double v1, double v2) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return (b1.divide(b2, mc)).doubleValue();
+        }
+
+        public static double divide2(double v1, double v2) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return (b1.divide(b2, DEF_DIV_SCALE, RoundingMode.HALF_UP))
+                    .doubleValue();
+        }
+
+        public static double divide3(double v1, double v2) {
+
+            BigDecimal b1 = new BigDecimal(Double.toString(v1));
+
+            BigDecimal b2 = new BigDecimal(Double.toString(v2));
+
+            return (b1.divide(b2, DEF_DIV_SCALE, BigDecimal.ROUND_HALF_UP))
+                    .doubleValue();
+        }
+
+    }
+
+    public static String getTime(Long seconds, String type) {//输入秒
+        if (seconds != null) {
+            Date d = new Date(seconds * 1000);
+            SimpleDateFormat sdf = new SimpleDateFormat(type);
+            return sdf.format(d);
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * 身份证认证方法
+     */
+    public static class IdcardValidator {
+        protected String codeAndCity[][] = {{"11", "北京"}, {"12", "天津"},
+                {"13", "河北"}, {"14", "山西"}, {"15", "内蒙古"}, {"21", "辽宁"},
+                {"22", "吉林"}, {"23", "黑龙江"}, {"31", "上海"}, {"32", "江苏"},
+                {"33", "浙江"}, {"34", "安徽"}, {"35", "福建"}, {"36", "江西"},
+                {"37", "山东"}, {"41", "河南"}, {"42", "湖北"}, {"43", "湖南"},
+                {"44", "广东"}, {"45", "广西"}, {"46", "海南"}, {"50", "重庆"},
+                {"51", "四川"}, {"52", "贵州"}, {"53", "云南"}, {"54", "西藏"},
+                {"61", "陕西"}, {"62", "甘肃"}, {"63", "青海"}, {"64", "宁夏"},
+                {"65", "新疆"}, {"71", "台湾"}, {"81", "香港"}, {"82", "澳门"},
+                {"91", "国外"}};
+        private String cityCode[] = {"11", "12", "13", "14", "15", "21", "22",
+                "23", "31", "32", "33", "34", "35", "36", "37", "41", "42", "43",
+                "44", "45", "46", "50", "51", "52", "53", "54", "61", "62", "63",
+                "64", "65", "71", "81", "82", "91"};
+        //每位加权因子
+        private int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
+        //第18位校验码
+        private String verifyCode[] = {"1", "0", "X", "9", "8", "7", "6", "5",
+                "4", "3", "2"};
+
+        //验证所有的身份证的合法性
+        public boolean isValidatedAllIdcard(String idcard) {
+            if (idcard.length() == 15) {
+                idcard = this.convertIdcarBy15bit(idcard);
+            }
+            return this.isValidate18Idcard(idcard);
+        }
+
+        //判断18位身份证的合法性
+        public boolean isValidate18Idcard(String idcard) {
+            if (idcard.length() != 18) {
+                return false;
+            }
+            // 获取前17位
+            String idcard17 = idcard.substring(0, 17);
+            // 获取第18位
+            String idcard18Code = idcard.substring(17, 18);
+            char c[] = null;
+            String checkCode = "";
+            //是否都为数字
+            if (isDigital(idcard17)) {
+                c = idcard17.toCharArray();
+            } else {
+                return false;
+            }
+            if (null != c) {
+                int bit[] = new int[idcard17.length()];
+                bit = converCharToInt(c);
+                int sum17 = 0;
+                sum17 = getPowerSum(bit);
+                // 将和值与11取模得到余数进行校验码判断
+                checkCode = getCheckCodeBySum(sum17);
+                if (null == checkCode) {
+                    return false;
+                }
+                // 将身份证的第18位与算出来的校码进行匹配，不相等就为假
+                if (!idcard18Code.equalsIgnoreCase(checkCode)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //验证15位身份证的合法性,该方法验证不准确，最好是将15转为18位后再判断
+        public boolean isValidate15Idcard(String idcard) {
+            if (idcard.length() != 15) {
+                return false;
+            }
+            if (isDigital(idcard)) {
+                String provinceid = idcard.substring(0, 2);
+                String birthday = idcard.substring(6, 12);
+                int year = Integer.parseInt(idcard.substring(6, 8));
+                int month = Integer.parseInt(idcard.substring(8, 10));
+                int day = Integer.parseInt(idcard.substring(10, 12));
+                // 判断是否为合法的省份
+                boolean flag = false;
+                for (String id : cityCode) {
+                    if (id.equals(provinceid)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    return false;
+                }
+                // 该身份证生出日期在当前日期之后时为假
+                Date birthdate = null;
+                try {
+                    birthdate = new SimpleDateFormat("yyMMdd").parse(birthday);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                if (birthdate == null || new Date().before(birthdate)) {
+                    return false;
+                }
+
+                // 判断是否为合法的年份
+                GregorianCalendar curDay = new GregorianCalendar();
+                int curYear = curDay.get(Calendar.YEAR);
+                int year2bit = Integer.parseInt(String.valueOf(curYear)
+                        .substring(2));
+                // 判断该年份的两位表示法，小于50的和大于当前年份的，为假
+                if ((year < 50 && year > year2bit)) {
+                    return false;
+                }
+
+                // 判断是否为合法的月份
+                if (month < 1 || month > 12) {
+                    return false;
+                }
+
+                // 判断是否为合法的日期
+                boolean mflag = false;
+                curDay.setTime(birthdate); // 将该身份证的出生日期赋于对象curDay
+                switch (month) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 12:
+                        mflag = (day >= 1 && day <= 31);
+                        break;
+                    case 2: // 公历的2月非闰年有28天,闰年的2月是29天。
+                        if (curDay.isLeapYear(curDay.get(Calendar.YEAR))) {
+                            mflag = (day >= 1 && day <= 29);
+                        } else {
+                            mflag = (day >= 1 && day <= 28);
+                        }
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        mflag = (day >= 1 && day <= 30);
+                        break;
+                }
+                if (!mflag) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+            return true;
+        }
+
+        //将15位的身份证转成18位身份证
+        public String convertIdcarBy15bit(String idcard) {
+            String idcard17 = null;
+            // 非15位身份证
+            if (idcard.length() != 15) {
+                return null;
+            }
+
+            if (isDigital(idcard)) {
+                // 获取出生年月日
+                String birthday = idcard.substring(6, 12);
+                Date birthdate = null;
+                try {
+                    birthdate = new SimpleDateFormat("yyMMdd").parse(birthday);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Calendar cday = Calendar.getInstance();
+                cday.setTime(birthdate);
+                String year = String.valueOf(cday.get(Calendar.YEAR));
+
+                idcard17 = idcard.substring(0, 6) + year + idcard.substring(8);
+
+                char c[] = idcard17.toCharArray();
+                String checkCode = "";
+
+                if (null != c) {
+                    int bit[] = new int[idcard17.length()];
+
+                    // 将字符数组转为整型数组
+                    bit = converCharToInt(c);
+                    int sum17 = 0;
+                    sum17 = getPowerSum(bit);
+
+                    // 获取和值与11取模得到余数进行校验码
+                    checkCode = getCheckCodeBySum(sum17);
+                    // 获取不到校验位
+                    if (null == checkCode) {
+                        return null;
+                    }
+
+                    // 将前17位与第18位校验码拼接
+                    idcard17 += checkCode;
+                }
+            } else { // 身份证包含数字
+                return null;
+            }
+            return idcard17;
+        }
+
+        //15位和18位身份证号码的基本数字和位数验校
+        public boolean isIdcard(String idcard) {
+            return idcard == null || "".equals(idcard) ? false : Pattern.matches(
+                    "(^\\d{15}$)|(\\d{17}(?:\\d|x|X)$)", idcard);
+        }
+
+        //15位身份证号码的基本数字和位数验校
+        public boolean is15Idcard(String idcard) {
+            return idcard == null || "".equals(idcard) ? false : Pattern.matches(
+                    "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$",
+                    idcard);
+        }
+
+        //18位身份证号码的基本数字和位数验校
+        public boolean is18Idcard(String idcard) {
+            return Pattern
+                    .matches(
+                            "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([\\d|x|X]{1})$",
+                            idcard);
+        }
+
+        //数字验证
+        public boolean isDigital(String str) {
+            return str == null || "".equals(str) ? false : str.matches("^[0-9]*$");
+        }
+
+        //将身份证的每位和对应位的加权因子相乘之后，再得到和值
+        public int getPowerSum(int[] bit) {
+
+            int sum = 0;
+
+            if (power.length != bit.length) {
+                return sum;
+            }
+
+            for (int i = 0; i < bit.length; i++) {
+                for (int j = 0; j < power.length; j++) {
+                    if (i == j) {
+                        sum = sum + bit[i] * power[j];
+                    }
+                }
+            }
+            return sum;
+        }
+
+        //将和值与11取模得到余数进行校验码判断
+        public String getCheckCodeBySum(int sum17) {
+            String checkCode = null;
+            switch (sum17 % 11) {
+                case 10:
+                    checkCode = "2";
+                    break;
+                case 9:
+                    checkCode = "3";
+                    break;
+                case 8:
+                    checkCode = "4";
+                    break;
+                case 7:
+                    checkCode = "5";
+                    break;
+                case 6:
+                    checkCode = "6";
+                    break;
+                case 5:
+                    checkCode = "7";
+                    break;
+                case 4:
+                    checkCode = "8";
+                    break;
+                case 3:
+                    checkCode = "9";
+                    break;
+                case 2:
+                    checkCode = "x";
+                    break;
+                case 1:
+                    checkCode = "0";
+                    break;
+                case 0:
+                    checkCode = "1";
+                    break;
+            }
+            return checkCode;
+        }
+
+        //将字符数组转为整型数组
+        public int[] converCharToInt(char[] c) throws NumberFormatException {
+            int[] a = new int[c.length];
+            int k = 0;
+            for (char temp : c) {
+                a[k++] = Integer.parseInt(String.valueOf(temp));
+            }
+            return a;
+        }
+    }
+
 }
 
 

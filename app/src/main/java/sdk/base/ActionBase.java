@@ -4,10 +4,8 @@ package sdk.base;
 import java.util.HashMap;
 
 import sdk.utils.OnActionListener;
-import sdk.utils.RequestParam;
 
 public abstract class ActionBase {
-    RequestParam param;
 
     public static boolean isDebug() {
         return debug;
@@ -18,11 +16,6 @@ public abstract class ActionBase {
     }
 
     public static boolean debug = false;
-
-
-    public RequestParam getParam() {
-        return param;
-    }
 
     public abstract void setParam(HashMap<String, String> params);
 

@@ -178,7 +178,7 @@
 //        //            DataOutputStream out = new DataOutputStream(connection
 //        //                    .getOutputStream());
 //        //            String content = param.getRequestParam();
-//        //            if (ActionBase.isDebug())
+//        //            if (OkHttpActionBase.isDebug())
 //        //                Log.d("Debug:", "Post请求参数：" + url + "&" + content);
 //        //            out.writeBytes(content);
 //        //            out.flush();

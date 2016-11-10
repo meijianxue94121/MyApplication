@@ -1,18 +1,16 @@
-package sdk.base;
+package sdk.utils;
 
 
 import java.util.HashMap;
 
-import sdk.utils.OnActionListener;
-
-public abstract class ActionBase {
+public abstract class OkHttpActionBase {
 
     public static boolean isDebug() {
         return debug;
     }
 
     public static void setDebug(boolean debug) {
-        ActionBase.debug = debug;
+        OkHttpActionBase.debug = debug;
     }
 
     public static boolean debug = false;

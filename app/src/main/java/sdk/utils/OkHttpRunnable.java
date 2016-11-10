@@ -1,4 +1,4 @@
-package sdk;
+package sdk.utils;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,11 +13,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import sdk.base.ActionBase;
-import sdk.utils.ActionHelper;
-import sdk.utils.OnActionListener;
 
-public class OkHttpAction implements Runnable {
+public class OkHttpRunnable implements Runnable {
 
     /**
      * 成功获得网络数据 ID
@@ -56,7 +53,7 @@ public class OkHttpAction implements Runnable {
     private Handler handler;
 
     @SuppressLint("HandlerLeak")
-    public OkHttpAction(int requestMethod, int actionId, String url) {// baseUrlm没有参数的地址
+    public OkHttpRunnable(int requestMethod, int actionId, String url) {// baseUrlm没有参数的地址
         this.url = url;
         this.id = actionId;
         this.requestMethod = requestMethod;
@@ -112,20 +109,33 @@ public class OkHttpAction implements Runnable {
             OkHttpClient okHttpClient = new OkHttpClient();
             Request request = null;
             switch (requestMethod) {
-                case ActionHelper.GET:
+                case OkHttpActionHelper.GET:
                     //GET request
                     if (param != null) {
                         request = new Request.Builder().url(url + param.getRequestParam()).build();
                     } else {
                         request = new Request.Builder().url(url).build();
                     }
-                    if (ActionBase.isDebug()) {
+                    if (OkHttpActionBase.isDebug()) {
 
                         Log.d("Debug GET-->", url + param != null ? url + param.getRequestParam() : url);
                     }
 
                     break;
-                case ActionHelper.POST:
+
+                case OkHttpActionHelper.GET_STYLE1:
+                    if (param != null) {
+                        request = new Request.Builder().url(url + param.getStyle1RequestParam()).build();
+                    } else {
+                        request = new Request.Builder().url(url).build();
+                    }
+                    if (OkHttpActionBase.isDebug()) {
+
+                        Log.d("Debug GET-->", url + param != null ? url + param.getStyle1RequestParam() : url);
+                    }
+
+                    break;
+                case OkHttpActionHelper.POST:
                     //POST request
                     if (param != null) {
                         FormBody.Builder builder = new FormBody.Builder();//构建参数
@@ -139,19 +149,19 @@ public class OkHttpAction implements Runnable {
                             }
                         }
                         request = new Request.Builder().url(url).post(builder.build()).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug POST-->", url + param != null ? url + "&" + param.postRequestParam() : url);
                         }
                     } else {
                         //GET请求,
                         request = new Request.Builder().url(url).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug POST-->GET-->", url);
                         }
                     }
 
                     break;
-                case ActionHelper.PUT:
+                case OkHttpActionHelper.PUT:
                     if (param != null) {
                         FormBody.Builder builder = new FormBody.Builder();//构建参数
                         Map<String, String> stringParams = param.getParams();
@@ -164,19 +174,19 @@ public class OkHttpAction implements Runnable {
                             }
                         }
                         request = new Request.Builder().url(url).put(builder.build()).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Put-->", url + param != null ? url + "&" + param.putRequestParam() : url);
                         }
                     } else {
                         //GET请求,
                         request = new Request.Builder().url(url).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PUT-->GET-->", url);
                         }
                     }
 
                     break;
-                case ActionHelper.DEL:
+                case OkHttpActionHelper.DEL:
                     //Del request
                     if (param != null) {
                         //                    FormBody.Builder builder = new FormBody.Builder();//构建参数
@@ -190,19 +200,19 @@ public class OkHttpAction implements Runnable {
                         //                        }
                         //                    }
                         request = new Request.Builder().url(url + param.delRequestParam()).delete().build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Del-->", url + param != null ? url + param.delRequestParam() : url);
                         }
                     } else {
                         //GET请求,
                         request = new Request.Builder().url(url).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Del-->GET-->", url);
                         }
                     }
 
                     break;
-                case ActionHelper.PATCH:
+                case OkHttpActionHelper.PATCH:
                     //Del request
                     if (param != null) {
                         FormBody.Builder builder = new FormBody.Builder();//构建参数
@@ -217,13 +227,13 @@ public class OkHttpAction implements Runnable {
                         }
                         request = new Request.Builder().url(url).patch(builder.build()).build();
 
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PATCH-->", url + param != null ? url + param.patchRequestParam() : url);
                         }
                     } else {
                         //GET请求,
                         request = new Request.Builder().url(url).build();
-                        if (ActionBase.isDebug()) {
+                        if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PATCH-->GET-->", url);
                         }
                     }

@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import sdk.utils.ActionHelper;
+import sdk.utils.OkHttpActionHelper;
 
 public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnActionListener {
     private static final String TAG = "OkHttpActivity";
@@ -49,7 +49,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        ActionHelper.request(ActionHelper.PATCH, 500, "http://192.168.116.253:8080/", "demo", pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.PATCH, 500, "http://192.168.116.253:8080/", "demo", pa, this);
 
     }
 
@@ -57,7 +57,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         //        http://192.168.116.253:8080/demo/4
         HashMap<String, String> pa = new HashMap<>();
         pa.put("demoID", "1");
-        ActionHelper.request(ActionHelper.DEL, 400, "http://192.168.116.253:8080/", "demo", pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.DEL, 400, "http://192.168.116.253:8080/", "demo", pa, this);
     }
 
     private void doPut() {
@@ -69,7 +69,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        ActionHelper.request(ActionHelper.PUT, 300, "http://192.168.116.253:8080/", "demo", pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.PUT, 300, "http://192.168.116.253:8080/", "demo", pa, this);
 
     }
 
@@ -79,7 +79,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        ActionHelper.request(ActionHelper.POST, 200, "http://192.168.116.253:8080/", "demo", pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.POST, 200, "http://192.168.116.253:8080/", "demo", pa, this);
 
 
         //        //        http://121.41.10.2:20000/app/app/init?v=2200&cityID=179&phoneModel=MI5&deviceType=0
@@ -105,7 +105,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         //        pa.put("demoIDInt", "1");
         //        pa.put("demoIDLong", "1");
         //        pa.put("demoName", "1");
-        ActionHelper.request(ActionHelper.GET, 100, "http://192.168.116.253:8080/", "demo/", pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.GET, 100, "http://192.168.116.253:8080/", "demo/", pa, this);
 
         //        HashMap<String, String> pa = new HashMap<>();
         //        pa.put("userName", "jj%");

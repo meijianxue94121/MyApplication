@@ -3,12 +3,12 @@
 //
 //import java.util.HashMap;
 //
-//import sdk.base.ActionBase;
+//import sdk.utils.OkHttpActionBase;
 //import sdk.utils.GetAction;
 //import sdk.utils.GetParam;
 //import sdk.utils.OnActionListener;
 //
-//public class ActionGet extends ActionBase {
+//public class ActionGet extends OkHttpActionBase {
 //
 //    private GetAction action;
 //    private GetParam outParam;

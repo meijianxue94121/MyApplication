@@ -135,7 +135,7 @@
 //        }
 //        //        try {
 //        //            URL u = new URL(url + param.toString());
-//        //            if (ActionBase.isDebug())
+//        //            if (OkHttpActionBase.isDebug())
 //        //                Log.d("Debug:", "Get请求参数：" + url + param.toString());
 //        //            HttpURLConnection connection = (HttpURLConnection) u
 //        //                    .openConnection();

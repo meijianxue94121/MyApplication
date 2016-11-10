@@ -3,12 +3,12 @@
 //
 //import java.util.HashMap;
 //
-//import sdk.base.ActionBase;
+//import sdk.utils.OkHttpActionBase;
 //import sdk.utils.OnActionListener;
 //import sdk.utils.PostAction;
 //import sdk.utils.PostParam;
 //
-//public class ActionPost extends ActionBase {
+//public class ActionPost extends OkHttpActionBase {
 //
 //    private PostAction action;
 //    private StringBuffer url;

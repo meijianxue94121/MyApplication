@@ -3,27 +3,23 @@ package sdk.utils;//package sdk;
 
 import java.util.HashMap;
 
-import sdk.OkHttpAction;
-import sdk.OkHttpParam;
-import sdk.base.ActionBase;
+public class OkHttpAction extends OkHttpActionBase {
 
-public class ActionOkHttp extends ActionBase {
-
-    private OkHttpAction action;
+    private OkHttpRunnable action;
     private StringBuffer url;
     private int requestMethod;
     private OkHttpParam outParam;
 
-    public ActionOkHttp(OkHttpParam outParam) {
+    public OkHttpAction(OkHttpParam outParam) {
         super();
         this.outParam = outParam;
     }
 
-    public OkHttpAction getAction() {
+    public OkHttpRunnable getAction() {
         return action;
     }
 
-    public void setAction(OkHttpAction action) {
+    public void setAction(OkHttpRunnable action) {
         this.action = action;
     }
 
@@ -35,17 +31,17 @@ public class ActionOkHttp extends ActionBase {
         this.outParam = outParam;
     }
 
-    public ActionOkHttp(int requestMethod, int actionId, String actionName) {
+    public OkHttpAction(int requestMethod, int actionId, String actionName) {
         this.requestMethod = requestMethod;
-        action = new OkHttpAction(requestMethod, actionId, BASE_URL + actionName);
+        action = new OkHttpRunnable(requestMethod, actionId, BASE_URL + actionName);
         url = new StringBuffer();
         url.append(BASE_URL + actionName);
         outParam = new OkHttpParam();
     }
 
-    public ActionOkHttp(int requestMethod, int actionId, String top, String actionName) {
+    public OkHttpAction(int requestMethod, int actionId, String top, String actionName) {
         this.requestMethod = requestMethod;
-        action = new OkHttpAction(requestMethod, actionId, top + actionName);
+        action = new OkHttpRunnable(requestMethod, actionId, top + actionName);
         url = new StringBuffer();
         url.append(top + actionName);
         outParam = new OkHttpParam();

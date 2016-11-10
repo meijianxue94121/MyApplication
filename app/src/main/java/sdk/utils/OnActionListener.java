@@ -2,14 +2,13 @@ package sdk.utils;
 
 /**
  * 请求回调接口
- * @author zhang
  *
+ * @author zhang
  */
 public interface OnActionListener {
+    void onActionSuccess(int actionId, String ret);
 
-	public void onActionSuccess(int actionId, String ret);
+    void onActionFailed(int actionId, int httpStatus);
 
-	public void onActionFailed(int actionId, int httpStatus);
-
-	public void onActionException(int actionId, String exception);
+    void onActionException(int actionId, String exception);
 }

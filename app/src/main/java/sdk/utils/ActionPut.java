@@ -3,50 +3,50 @@
 //
 //import java.util.HashMap;
 //
-//import sdk.base.ActionBase;
-//import sdk.utils.DelAction;
-//import sdk.utils.DelParam;
+//import sdk.utils.OkHttpActionBase;
 //import sdk.utils.OnActionListener;
+//import sdk.utils.PutAction;
+//import sdk.utils.PutParam;
 //
-//public class ActionOkHttp extends ActionBase {
+//public class ActionPut extends OkHttpActionBase {
 //
-//    private DelAction action;
+//    private PutAction action;
 //    private StringBuffer url;
-//    private DelParam outParam;
+//    private PutParam outParam;
 //
-//    public ActionOkHttp(DelParam outParam) {
+//    public ActionPut(PutParam outParam) {
 //        super();
 //        this.outParam = outParam;
 //    }
 //
-//    public DelAction getAction() {
+//    public PutAction getAction() {
 //        return action;
 //    }
 //
-//    public void setAction(DelAction action) {
+//    public void setAction(PutAction action) {
 //        this.action = action;
 //    }
 //
-//    public DelParam getOutParam() {
+//    public PutParam getOutParam() {
 //        return outParam;
 //    }
 //
-//    public void setOutParam(DelParam outParam) {
+//    public void setOutParam(PutParam outParam) {
 //        this.outParam = outParam;
 //    }
 //
-//    public ActionOkHttp(int actionId, String actionName) {
-//        action = new DelAction(actionId, BASE_URL + actionName);
+//    public ActionPut(int actionId, String actionName) {
+//        action = new PutAction(actionId, BASE_URL + actionName );
 //        url = new StringBuffer();
 //        url.append(BASE_URL + actionName);
-//        outParam = new DelParam();
+//        outParam = new PutParam();
 //    }
 //
-//    public ActionOkHttp(int actionId, String top, String actionName) {
-//        action = new DelAction(actionId, top + actionName);
+//    public ActionPut(int actionId, String top, String actionName) {
+//        action = new PutAction(actionId, top + actionName );
 //        url = new StringBuffer();
 //        url.append(top + actionName);
-//        outParam = new DelParam();
+//        outParam = new PutParam();
 //    }
 //
 //    public void setOnActionListener(OnActionListener listener) {

@@ -13,7 +13,14 @@ import java.util.Set;
 public class OkHttpParam {
     public HashMap<String, String> params;
 
+    public OkHttpParam() {
+        params = new HashMap<>();
+    }
+
     public HashMap<String, String> getParams() {
+        if (params == null) {
+            params = new HashMap<>();
+        }
         return params;
     }
 
@@ -28,10 +35,6 @@ public class OkHttpParam {
         params.put(key, value);
     }
 
-    @Override
-    public String toString() {
-        return params.toString();
-    }
 
     public String getRequestParam() {
         if (params != null && params.size() > 0) {
@@ -48,21 +51,6 @@ public class OkHttpParam {
                 }
             }
             return sb.toString();
-        }
-        return "";
-    }
-
-    public String getStyle1RequestParam() {
-        StringBuffer request = new StringBuffer();
-        if (params != null && params.size() > 0) {
-            Set<Entry<String, String>> entrySet = params.entrySet();
-            Iterator<Entry<String, String>> iterator = entrySet.iterator();
-            while (iterator.hasNext()) {
-                Entry<String, String> next = iterator.next();
-                request.append("/");
-                request.append(next.getValue());
-            }
-            return request.toString();
         }
         return "";
     }
@@ -118,6 +106,7 @@ public class OkHttpParam {
         }
         return "";
     }
+
 
     public String patchRequestParam() {
         StringBuffer request = new StringBuffer();

@@ -49,7 +49,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        OkHttpActionHelper.request(OkHttpActionHelper.PATCH, 500, "http://192.168.116.253:8080/", "demo", pa, this);
+        //        OkHttpActionHelper.request(OkHttpActionHelper.PATCH, 500, "http://192.168.116.253:8080/", "demo", pa, this);
 
     }
 
@@ -57,7 +57,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         //        http://192.168.116.253:8080/demo/4
         HashMap<String, String> pa = new HashMap<>();
         pa.put("demoID", "1");
-        OkHttpActionHelper.request(OkHttpActionHelper.DEL, 400, "http://192.168.116.253:8080/", "demo", pa, this);
+        //        OkHttpActionHelper.request(OkHttpActionHelper.DEL, 400, "http://192.168.116.253:8080/", "demo", pa, this);
     }
 
     private void doPut() {
@@ -69,7 +69,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        OkHttpActionHelper.request(OkHttpActionHelper.PUT, 300, "http://192.168.116.253:8080/", "demo", pa, this);
+        //        OkHttpActionHelper.request(OkHttpActionHelper.PUT, 300, "http://192.168.116.253:8080/", "demo", pa, this);
 
     }
 
@@ -79,7 +79,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
         pa.put("demoIDInt", "1");
         pa.put("demoIDLong", "1");
         pa.put("demoName", "1");
-        OkHttpActionHelper.request(OkHttpActionHelper.POST, 200, "http://192.168.116.253:8080/", "demo", pa, this);
+        //        OkHttpActionHelper.request(OkHttpActionHelper.POST, 200, "http://192.168.116.253:8080/", "demo", pa, this);
 
 
         //        //        http://121.41.10.2:20000/app/app/init?v=2200&cityID=179&phoneModel=MI5&deviceType=0
@@ -100,12 +100,8 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
 
     private void doGet() {
         //        http://192.168.116.253:8080/demo
-        HashMap<String, String> pa = new HashMap<>();
-        //                pa.put("demoID", "1");
-        //        pa.put("demoIDInt", "1");
-        //        pa.put("demoIDLong", "1");
-        //        pa.put("demoName", "1");
-        OkHttpActionHelper.request(OkHttpActionHelper.GET, 100, "http://192.168.116.253:8080/", "demo/", pa, this);
+        //        http://192.168.116.24:8080/match/1
+        OkHttpActionHelper.request(OkHttpActionHelper.GET, 100, "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=1&rsv_pq=84f228d80000121a&rsv_t=e0d6luz9T5IOhToHWaTyquFGibhl%2BVvzJ1pDBYNs0VIx5O5YI1fs16mZQCQ&rqlang=cn&rsv_enter=1&rsv_sug3=2&rsv_sug1=1&rsv_sug7=100&rsv_sug2=0&inputT=914&rsv_sug4=1161", "", null, null, this);
 
         //        HashMap<String, String> pa = new HashMap<>();
         //        pa.put("userName", "jj%");

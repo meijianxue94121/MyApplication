@@ -8,6 +8,8 @@ import com.example.dojoy.myapplication.stickHeader.api.RandomUserLoader;
 
 import java.util.Stack;
 
+import sdk.utils.OkHttpActionBase;
+
 
 /**
  * Created by shamyl on 4/22/16.
@@ -23,6 +25,7 @@ public class StickyHeadersDemoApp extends Application {
         activities = new Stack<Activity>();
         randomUserLoader = new RandomUserLoader();
         ZhUtils.configImageLoader(this);
+        OkHttpActionBase.setDebug(true);
     }
 
     public RandomUserLoader getRandomUserLoader() {

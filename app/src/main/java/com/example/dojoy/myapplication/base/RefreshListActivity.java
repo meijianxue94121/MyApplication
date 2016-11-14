@@ -93,7 +93,7 @@ public abstract class RefreshListActivity<T> extends LNetWorkBaseAct implements 
         isLoading = true;
         pageIndex++;
         final HashMap<String, String> pa = getRequestMap();
-        OkHttpActionHelper.request(1, 2, top, servlet, pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.GET, 2, top, servlet, null, pa, this);
     }
 
     protected abstract HashMap<String, String> getRequestMap();
@@ -117,7 +117,7 @@ public abstract class RefreshListActivity<T> extends LNetWorkBaseAct implements 
         hasData = true;
         adapter.openLoadMore(ExtraUtils.LoadNum, needNext);
         HashMap<String, String> pa = getRequestMap();
-        OkHttpActionHelper.request(1, 1, top, servlet, pa, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.GET, 1, top, servlet, null, pa, this);
     }
 
     @Override

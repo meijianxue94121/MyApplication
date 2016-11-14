@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -43,13 +44,20 @@ public class OkHttpRunnable implements Runnable {
 
     private int id;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     private String url;
     private int requestMethod;
 
     private OnActionListener listener;
 
     private OkHttpParam param;
-
     private Handler handler;
 
     @SuppressLint("HandlerLeak")
@@ -106,35 +114,33 @@ public class OkHttpRunnable implements Runnable {
     @Override
     public void run() {
         try {
-            OkHttpClient okHttpClient = new OkHttpClient();
-            Request request = null;
+            OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
+            Request.Builder request = new Request.Builder();
             switch (requestMethod) {
                 case OkHttpActionHelper.GET:
                     //GET request
                     if (param != null) {
-                        request = new Request.Builder().url(url + param.getRequestParam()).build();
+                        request.url(url + param.getRequestParam()).build();
                     } else {
-                        request = new Request.Builder().url(url).build();
+                        request.url(url).build();
                     }
                     if (OkHttpActionBase.isDebug()) {
-
                         Log.d("Debug GET-->", url + param != null ? url + param.getRequestParam() : url);
                     }
 
                     break;
 
-                case OkHttpActionHelper.GET_STYLE1:
-                    if (param != null) {
-                        request = new Request.Builder().url(url + param.getStyle1RequestParam()).build();
-                    } else {
-                        request = new Request.Builder().url(url).build();
-                    }
-                    if (OkHttpActionBase.isDebug()) {
-
-                        Log.d("Debug GET-->", url + param != null ? url + param.getStyle1RequestParam() : url);
-                    }
-
-                    break;
+                //                case OkHttpActionHelper.GET_STYLE1:
+                //                    if (param != null) {
+                //                        request.url(url + param.getStyle1RequestParam()).build();
+                //                    } else {
+                //                        request.url(url).build();
+                //                    }
+                //                    if (OkHttpActionBase.isDebug()) {
+                //                        Log.d("Debug GET-->", url + param != null ? url + param.getStyle1RequestParam() : url);
+                //                    }
+                //
+                //                    break;
                 case OkHttpActionHelper.POST:
                     //POST request
                     if (param != null) {
@@ -148,13 +154,13 @@ public class OkHttpRunnable implements Runnable {
                                 builder.add(next.getKey(), next.getValue());
                             }
                         }
-                        request = new Request.Builder().url(url).post(builder.build()).build();
+                        request.url(url).post(builder.build()).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug POST-->", url + param != null ? url + "&" + param.postRequestParam() : url);
                         }
                     } else {
                         //GET请求,
-                        request = new Request.Builder().url(url).build();
+                        request.url(url).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug POST-->GET-->", url);
                         }
@@ -173,13 +179,13 @@ public class OkHttpRunnable implements Runnable {
                                 builder.add(next.getKey(), next.getValue());
                             }
                         }
-                        request = new Request.Builder().url(url).put(builder.build()).build();
+                        request.url(url).put(builder.build()).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Put-->", url + param != null ? url + "&" + param.putRequestParam() : url);
                         }
                     } else {
                         //GET请求,
-                        request = new Request.Builder().url(url).build();
+                        request.url(url).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PUT-->GET-->", url);
                         }
@@ -199,13 +205,13 @@ public class OkHttpRunnable implements Runnable {
                         //                            builder.add(next.getKey(), next.getValue());
                         //                        }
                         //                    }
-                        request = new Request.Builder().url(url + param.delRequestParam()).delete().build();
+                        request.url(url + param.delRequestParam()).delete().build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Del-->", url + param != null ? url + param.delRequestParam() : url);
                         }
                     } else {
                         //GET请求,
-                        request = new Request.Builder().url(url).build();
+                        request.url(url).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug Del-->GET-->", url);
                         }
@@ -225,14 +231,14 @@ public class OkHttpRunnable implements Runnable {
                                 builder.add(next.getKey(), next.getValue());
                             }
                         }
-                        request = new Request.Builder().url(url).patch(builder.build()).build();
+                        request.url(url).patch(builder.build()).build();
 
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PATCH-->", url + param != null ? url + param.patchRequestParam() : url);
                         }
                     } else {
                         //GET请求,
-                        request = new Request.Builder().url(url).build();
+                        request.url(url).build();
                         if (OkHttpActionBase.isDebug()) {
                             Log.d("Debug PATCH-->GET-->", url);
                         }
@@ -241,9 +247,10 @@ public class OkHttpRunnable implements Runnable {
                     break;
 
             }
-
-
-            Response response = okHttpClient.newCall(request).execute();
+            okHttpClient.connectTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(60, TimeUnit.SECONDS);
+            Response response = okHttpClient.build().newCall(request.build()).execute();
             if (response.isSuccessful()) {
                 //请求成功
                 Message msg = Message.obtain();
@@ -251,7 +258,9 @@ public class OkHttpRunnable implements Runnable {
                 msg.arg1 = MSG_TYPE_SUCCESS;
                 Bundle data = new Bundle();
                 String string = response.body().string();
-                //                Log.d("Debug", "Result:" + string);
+                if (OkHttpActionBase.isDebug()) {
+                    Log.d("Debug", "Result:" + string);
+                }
                 data.putString(MSG_KEY_PARAM, string);
                 msg.setData(data);
                 handler.sendMessage(msg);

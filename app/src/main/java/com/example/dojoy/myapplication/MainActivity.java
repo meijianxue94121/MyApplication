@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             case 15:
                 //
                 startActivity(new Intent(MainActivity.this, MyDialogAct.class));
+                //                startActivity(new Intent(MainActivity.this, TestAct.class));
                 break;
         }
     }

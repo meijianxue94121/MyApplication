@@ -130,6 +130,8 @@
 
         <activity android:name=".base.MyDialogAct">
         </activity>
+        <activity android:name=".TestAct">
+        </activity>
     </application>
 
 </manifest>

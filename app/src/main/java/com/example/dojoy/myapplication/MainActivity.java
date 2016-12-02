@@ -21,6 +21,7 @@ import com.example.dojoy.myapplication.helputils.ZhUtils;
 import com.example.dojoy.myapplication.okhttps.OkHttpActivity;
 import com.example.dojoy.myapplication.photos.PhotoViewActivity;
 import com.example.dojoy.myapplication.recycleSlide.mcxtzhang.swipedelmenu.FullDemo.FullDelDemoActivity;
+import com.example.dojoy.myapplication.redPoint.RedPointListAct;
 import com.example.dojoy.myapplication.scroll.PullScrollViewZoomView;
 import com.example.dojoy.myapplication.scroll.PullZoomListViewActivity;
 import com.example.dojoy.myapplication.scroll.recyclerview.PullToZoomRecyclerActivity;
@@ -134,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, MyDialogAct.class));
                 //                startActivity(new Intent(MainActivity.this, TestAct.class));
                 break;
+            case 16:
+                //
+                startActivity(new Intent(MainActivity.this, JPTabBarAct.class));
+                //                startActivity(new Intent(MainActivity.this, TestAct.class));
+                break;
+            case 17:
+                //
+                startActivity(new Intent(MainActivity.this, RedPointListAct.class));
+                //                startActivity(new Intent(MainActivity.this, TestAct.class));
+                break;
         }
     }
 
@@ -162,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
         da.add("桌面快捷0");
         da.add("桌面快捷1");
         da.add("自定义dialog");
+        da.add("JPTabBar");
+        da.add("RedPoint");
         return da;
     }
 

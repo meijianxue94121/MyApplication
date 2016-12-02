@@ -116,6 +116,9 @@ public class OkHttpRunnable implements Runnable {
         try {
             OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
             Request.Builder request = new Request.Builder();
+
+            //            X509TrustManager
+
             switch (requestMethod) {
                 case OkHttpActionHelper.GET:
                     //GET request
@@ -127,7 +130,6 @@ public class OkHttpRunnable implements Runnable {
                     if (OkHttpActionBase.isDebug()) {
                         Log.d("Debug GET-->", url + param != null ? url + param.getRequestParam() : url);
                     }
-
                     break;
 
                 //                case OkHttpActionHelper.GET_STYLE1:

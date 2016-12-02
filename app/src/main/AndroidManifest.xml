@@ -132,6 +132,10 @@
         </activity>
         <activity android:name=".TestAct">
         </activity>
+        <activity android:name=".JPTabBarAct">
+        </activity>
+        <activity android:name=".redPoint.RedPointListAct">
+        </activity>
     </application>
 
 </manifest>

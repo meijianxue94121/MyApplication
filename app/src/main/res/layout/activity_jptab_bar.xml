@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:jp="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.dojoy.myapplication.JPTabBarAct">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ahduashdkahdjakshdasd"
+        android:textSize="25sp"/>
+
+    <com.jpeng.jptabbar.badgeview.BadgeRelativeLayout
+        android:id="@+id/mmmm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ahduashdkahdjakshdasd"
+            android:textSize="25sp"/>
+    </com.jpeng.jptabbar.badgeview.BadgeRelativeLayout>
+
+    <com.jpeng.jptabbar.JPTabBar
+        android:id="@+id/tabbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        jp:BadgeDraggable="false"
+        jp:BadgeMargin="5dp"
+        jp:BadgePadding="4dp"
+        jp:BadgeTextSize="10dp"
+        jp:TabAnimate="Rotate"
+        jp:TabHeight="56dp"
+        />
+</LinearLayout>

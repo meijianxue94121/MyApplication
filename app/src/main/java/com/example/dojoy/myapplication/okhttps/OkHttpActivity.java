@@ -101,7 +101,7 @@ public class OkHttpActivity extends AppCompatActivity implements sdk.utils.OnAct
     private void doGet() {
         //        http://192.168.116.253:8080/demo
         //        http://192.168.116.24:8080/match/1
-        OkHttpActionHelper.request(OkHttpActionHelper.GET, 100, "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=1&rsv_pq=84f228d80000121a&rsv_t=e0d6luz9T5IOhToHWaTyquFGibhl%2BVvzJ1pDBYNs0VIx5O5YI1fs16mZQCQ&rqlang=cn&rsv_enter=1&rsv_sug3=2&rsv_sug1=1&rsv_sug7=100&rsv_sug2=0&inputT=914&rsv_sug4=1161", "", null, null, this);
+        OkHttpActionHelper.request(OkHttpActionHelper.GET, 100, "https://kyfw.12306.cn/otn/", "", null, null, this);
 
         //        HashMap<String, String> pa = new HashMap<>();
         //        pa.put("userName", "jj%");

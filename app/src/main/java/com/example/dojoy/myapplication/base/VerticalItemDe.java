@@ -58,11 +58,11 @@ public class VerticalItemDe extends RecyclerView.ItemDecoration {
 
     }
 
-    public VerticalItemDe(Context context, int fitstSpace, int space) {
+    public VerticalItemDe(Context context, int firstSpace, int space) {
         super();
         mContext = context;
         this.space = ZhUtils.DimenTrans.dip2px(context, space);
-        this.firstSpace = ZhUtils.DimenTrans.dip2px(context, fitstSpace);
+        this.firstSpace = ZhUtils.DimenTrans.dip2px(context, firstSpace);
 
     }
 

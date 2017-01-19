@@ -74,4 +74,7 @@
     <string name="alert_dialog_button_title_jump">Jump</string>
 
     <string name="alert_dialog_button_title_smooth">Smooth</string>
+    <string name="str_net_error">网络不给力哦</string>
+    <string name="str_server_error">服务器异常啦</string>
+    <string name="str_hint_reload">重新连接</string>
 </resources>

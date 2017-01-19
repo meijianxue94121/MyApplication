@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
  * 4.刷新actionId=1,
  * 5.加载actionId=2
  */
-public abstract class RefreshListActivity<T> extends LLNetWorkBaseAct implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class LLRefreshListActivity<T> extends LLNetWorkBaseAct implements SwipeRefreshLayout.OnRefreshListener {
 	@BindView (R.id.recyclerView)
 	RecyclerView recyclerView;
 	@BindView (R.id.srlRefresh)
@@ -79,7 +79,6 @@ public abstract class RefreshListActivity<T> extends LLNetWorkBaseAct implements
 		adapter.openLoadMore (ExtraUtils.LoadNum, needNext);
 		HashMap<String, String> pa = getRequestMap ();
 		ArrayList<String> us = getUrls ();
-		//		ActionHelper.request (1, 1, top, servlet, pa, this);
 		if (okHttpActionHelper != null) {
 			okHttpActionHelper.get (1, servlet, us, pa, this);
 		}
@@ -165,8 +164,12 @@ public abstract class RefreshListActivity<T> extends LLNetWorkBaseAct implements
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
+
+		beforeCreate ();
 		super.onCreate (savedInstanceState);
 		ButterKnife.bind (this);
+		afterCreate ();
+
 		init ();
 	}
 
@@ -194,4 +197,30 @@ public abstract class RefreshListActivity<T> extends LLNetWorkBaseAct implements
 	public void reloadData () {
 		initData ();
 	}
+
+	/**
+	 * 绑定控件后数据处理与操作
+	 * adapter = new CardListAdapter (this);
+	 * initAdapter (10, 1);
+	 * adapter.setOnRecyclerViewItemClickListener (new BaseQuickAdapter.OnRecyclerViewItemClickListener () {
+	 *
+	 * @Override public void onItemClick (View view, int i) {
+	 * }
+	 * });
+	 * toolBar.setTitle ("会员卡");
+	 * initData ();
+	 */
+	public abstract void afterCreate ();
+
+	/**
+	 * 初始化部分基础数据
+	 * servlet = "card";
+	 * emptyImageId = R.mipmap.ic_launcher;
+	 * emptyString = "暂无数据";
+	 * classT = Card.class;
+	 * needNext = false;
+	 * venueId = 3604;
+	 * okHttpActionHelper = new OkHttpActionHelper () {
+	 */
+	public abstract void beforeCreate ();
 }

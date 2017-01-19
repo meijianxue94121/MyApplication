@@ -1,4 +1,4 @@
-package sdk.utils;
+package sdk.base;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,12 +14,12 @@ public class OkHttpParam {
     public HashMap<String, String> params;
 
     public OkHttpParam() {
-        params = new HashMap<>();
+        params=new HashMap<> ();
     }
 
     public HashMap<String, String> getParams() {
         if (params == null) {
-            params = new HashMap<>();
+            params=new HashMap<> ();
         }
         return params;
     }
@@ -30,7 +30,7 @@ public class OkHttpParam {
 
     public void addParam(String key, String value) {
         if (params == null) {
-            params = new HashMap<String, String>();
+            params = new HashMap<String, String> ();
         }
         params.put(key, value);
     }
@@ -38,7 +38,7 @@ public class OkHttpParam {
 
     public String getRequestParam() {
         if (params != null && params.size() > 0) {
-            StringBuffer sb = new StringBuffer();
+            StringBuffer sb = new StringBuffer ();
             sb.append('?');
             Iterator<String> it = params.keySet().iterator();
             while (it.hasNext()) {
@@ -56,7 +56,7 @@ public class OkHttpParam {
     }
 
     public String postRequestParam() {
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer ();
         if (params != null && params.size() > 0) {
             Set<Entry<String, String>> entrySet = params.entrySet();
             Iterator<Entry<String, String>> iterator = entrySet.iterator();
@@ -74,7 +74,7 @@ public class OkHttpParam {
     }
 
     public String putRequestParam() {
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer ();
         if (params != null && params.size() > 0) {
             Set<Entry<String, String>> entrySet = params.entrySet();
             Iterator<Entry<String, String>> iterator = entrySet.iterator();
@@ -93,7 +93,7 @@ public class OkHttpParam {
     }
 
     public String delRequestParam() {
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer ();
         if (params != null && params.size() > 0) {
             Set<Entry<String, String>> entrySet = params.entrySet();
             Iterator<Entry<String, String>> iterator = entrySet.iterator();
@@ -109,7 +109,7 @@ public class OkHttpParam {
 
 
     public String patchRequestParam() {
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer ();
         if (params != null && params.size() > 0) {
             Set<Entry<String, String>> entrySet = params.entrySet();
             Iterator<Entry<String, String>> iterator = entrySet.iterator();

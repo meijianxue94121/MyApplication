@@ -7,6 +7,7 @@
     <!-- xmlns:tools="http://schemas.android.com/tools" -->
     <!-- tools:node="replace"/> -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
@@ -19,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".MainActivity">
+        <activity android:name=".base.BaseBaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

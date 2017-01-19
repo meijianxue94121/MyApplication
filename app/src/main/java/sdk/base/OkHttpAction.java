@@ -1,4 +1,4 @@
-package sdk.utils;//package sdk;
+package sdk.base;//package sdk;
 
 
 import java.util.ArrayList;
@@ -10,9 +10,6 @@ public class OkHttpAction extends OkHttpActionBase {
     private int requestMethod;
     private OkHttpParam outParam;
 
-
-    private ArrayList<String> urlParams;
-
     public ArrayList<String> getUrlParams() {
         return urlParams;
     }
@@ -20,6 +17,8 @@ public class OkHttpAction extends OkHttpActionBase {
     public void setUrlParams(ArrayList<String> urlParams) {
         this.urlParams = urlParams;
     }
+
+    private ArrayList<String> urlParams;
 
     public OkHttpAction(OkHttpParam outParam) {
         super();
@@ -58,17 +57,17 @@ public class OkHttpAction extends OkHttpActionBase {
         } else {
             action = new OkHttpRunnable(requestMethod, actionId, top + actionName);
         }
-        url = new StringBuffer();
+        url = new StringBuffer ();
         url.append(top + actionName);
         this.urlParams = urlParams;
         outParam = new OkHttpParam();
     }
 
     public String doUrl(ArrayList<String> urls) {
-        StringBuffer request = new StringBuffer();
+        StringBuffer request = new StringBuffer ();
         if (urls != null && urls.size() > 0) {
             for (String s : urls) {
-                request.append("/" + s);
+                request.append("/"+s);
             }
             return request.toString();
         }
@@ -86,15 +85,15 @@ public class OkHttpAction extends OkHttpActionBase {
 
     public void startAction() {
         action.setUrl(url.toString() + doUrl(urlParams));
-        outParam.getParams().putAll(getCommonParams());
+        outParam.getParams().putAll(getCommonValues());
         action.setParam(outParam);
         action.startAction();
     }
 
-    public HashMap<String, String> getCommonParams() {
-        HashMap<String, String> commonParams = new HashMap<>();
-        commonParams.put("v", 2200 + "");
-        return commonParams;
-
+    private HashMap<String,String> getCommonValues() {
+        HashMap<String, String> map = new HashMap<> ();
+//        map.put("phoneModel", MyApplication.getInstance().getRelease().replaceAll(" ", ""));
+//        map.put("v", MyApplication.getInstance().getVersionCode() + "");
+        return map;
     }
 }
